@@ -1,0 +1,104 @@
+{
+  "set": "ship",
+  "mega_catalog_size": 20,
+  "mega_generated": [
+    "hull_frame",
+    "viewport",
+    "reactor_core"
+  ],
+  "assembly": {
+    "size": [
+      1536,
+      640
+    ],
+    "file": "ship_mega_1x.png",
+    "preview": "ship_mega_preview.png",
+    "palette_violations": [
+      0,
+      0
+    ]
+  },
+  "elements": [
+    {
+      "id": "hull_frame",
+      "name": "Hull Frame",
+      "kind": "mega element",
+      "size": [
+        128,
+        256
+      ],
+      "pivot": [
+        64,
+        256
+      ],
+      "layer": "sorted_body",
+      "collision": true,
+      "catalog_size": [
+        128,
+        256
+      ],
+      "palette_violations": [
+        0,
+        0
+      ],
+      "source": {
+        "model": "gemini-nano-banana-2.1",
+        "prompt": "A single mega element side-view 2D pixel-art asset for a sci-fi cyberpunk spaceship interior: a tall heavy structural hull rib / bulkhead frame for a spaceship interior, symmetric, riveted dark gunmetal beams, cyan strip light, small hazard markings, exposed pipes, designed as a modular wall rib that spans from ceiling to floor. The object is fully visible and centred, flat side-view orthographic, no perspective, no ground plane, no cast shadow, no character, no text, no UI labels. Solid magenta #FF00FF background, completely flat and empty. Match the palette, pixel size, 1px outline weight, rivets, panel seams and cyan/violet lighting of the reference image. side-view 2D pixel art for a sci-fi cyberpunk spaceship interior: dark gunmetal and navy plating, rivets and panel seams, cyan holographic light strips, violet accent panels, small warm hazard markings, 1px near-black outline, crisp large pixel clusters, flat three-tone shading, 64-colour limited palette, zero anti-aliasing, zero blur, no gradients"
+      }
+    },
+    {
+      "id": "viewport",
+      "name": "Armoured Viewport",
+      "kind": "mega element",
+      "size": [
+        128,
+        96
+      ],
+      "pivot": [
+        64,
+        96
+      ],
+      "layer": "sorted_body",
+      "collision": true,
+      "catalog_size": [
+        128,
+        96
+      ],
+      "palette_violations": [
+        0,
+        0
+      ],
+      "source": {
+        "model": "gemini-nano-banana-2.1",
+        "prompt": "A single mega element side-view 2D pixel-art asset for a sci-fi cyberpunk spaceship interior: a wide armoured spaceship viewport module, thick riveted metal frame, large window showing a deep-space starfield and a distant violet planet, thin cyan interior glow, small warning labels, side view. The object is fully visible and centred, flat side-view orthographic, no perspective, no ground plane, no cast shadow, no character, no text, no UI labels. Solid magenta #FF00FF background, completely flat and empty. Match the palette, pixel size, 1px outline weight, rivets, panel seams and cyan/violet lighting of the reference image. side-view 2D pixel art for a sci-fi cyberpunk spaceship interior: dark gunmetal and navy plating, rivets and panel seams, cyan holographic light strips, violet accent panels, small warm hazard markings, 1px near-black outline, crisp large pixel clusters, flat three-tone shading, 64-colour limited palette, zero anti-aliasing, zero blur, no gradients"
+      }
+    },
+    {
+      "id": "reactor_core",
+      "name": "Reactor Core",
+      "kind": "mega element",
+      "size": [
+        128,
+        192
+      ],
+      "pivot": [
+        64,
+        192
+      ],
+      "layer": "sorted_body",
+      "collision": true,
+      "catalog_size": [
+        128,
+        192
+      ],
+      "palette_violations": [
+        0,
+        0
+      ],
+      "source": {
+        "model": "gemini-nano-banana-2.1",
+        "prompt": "A single mega element side-view 2D pixel-art asset for a sci-fi cyberpunk spaceship interior: a spaceship reactor core module, vertical cylindrical reactor with glowing cyan energy rings, violet magnetic coils, thick pipes and cable bundles, hazard stripes at the base, side view. The object is fully visible and centred, flat side-view orthographic, no perspective, no ground plane, no cast shadow, no character, no text, no UI labels. Solid magenta #FF00FF background, completely flat and empty. Match the palette, pixel size, 1px outline weight, rivets, panel seams and cyan/violet lighting of the reference image. side-view 2D pixel art for a sci-fi cyberpunk spaceship interior: dark gunmetal and navy plating, rivets and panel seams, cyan holographic light strips, violet accent panels, small warm hazard markings, 1px near-black outline, crisp large pixel clusters, flat three-tone shading, 64-colour limited palette, zero anti-aliasing, zero blur, no gradients"
+      }
+    }
+  ]
+}

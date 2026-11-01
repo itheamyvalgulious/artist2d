@@ -1,0 +1,120 @@
+{
+  "set": "ship",
+  "materials": {
+    "deck": {
+      "phase": [
+        0,
+        2
+      ],
+      "ks": {
+        "ks_statistic": 0.04939516129032262,
+        "p_value": 0.9964993218188652,
+        "p_value_3x3": 0.3078465025853946,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    "wall": {
+      "phase": [
+        30,
+        25
+      ],
+      "ks": {
+        "ks_statistic": 0.03881048387096775,
+        "p_value": 0.9999459695777244,
+        "p_value_3x3": 0.6087314623355846,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    "grate": {
+      "phase": [
+        21,
+        29
+      ],
+      "ks": {
+        "ks_statistic": 0.02620967741935487,
+        "p_value": 0.9999999998561881,
+        "p_value_3x3": 0.9524118327403119,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    "conduit": {
+      "phase": [
+        22,
+        2
+      ],
+      "ks": {
+        "ks_statistic": 0.047883064516129004,
+        "p_value": 0.997725264410364,
+        "p_value_3x3": 0.34371496440308114,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    }
+  },
+  "tileset": [
+    "ceiling",
+    "deck_fill",
+    "deck_left",
+    "deck_right",
+    "deck_top",
+    "deck_top_left",
+    "deck_top_right",
+    "grate_fill",
+    "grate_top",
+    "hazard",
+    "light_strip",
+    "pipe_h",
+    "pipe_v",
+    "vent",
+    "wall",
+    "wall_flat",
+    "wall_flat_light",
+    "wall_flat_violet",
+    "wall_light",
+    "wall_plain",
+    "wall_violet",
+    "window"
+  ],
+  "tileset_file": "tileset.png",
+  "tileset_sample": "tileset_sample.png",
+  "tileset_preview": "tileset_preview_x8.png",
+  "palette_violations": {
+    "tileset": [
+      0,
+      0
+    ],
+    "sample": [
+      0,
+      0
+    ]
+  },
+  "medium_catalog_size": 10,
+  "medium_generated": [
+    "console_bank",
+    "cargo_stack",
+    "server_rack"
+  ]
+}

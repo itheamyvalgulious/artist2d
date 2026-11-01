@@ -1,0 +1,25 @@
+{
+  "module": "mega_all",
+  "steps": [
+    "4.1",
+    "4.2",
+    "4.3"
+  ],
+  "blueprint": "15x20",
+  "canvas_true_px": "1280x960",
+  "unique_32px_tiles": 415,
+  "palette_violations": 0,
+  "coverage": 0.5122,
+  "coverage_dense": 0.3577,
+  "covered_seams": 63,
+  "covered_dense": 44,
+  "cross_seams": 123,
+  "decal_anchors": 27,
+  "center_variants": 3,
+  "output_dir": "/dat/projects/artist2d/output/mega",
+  "files": {
+    "atlas": "/dat/projects/artist2d/output/mega/mega_atlas.png",
+    "layout": "/dat/projects/artist2d/output/mega/mega_layout.json",
+    "preview": "/dat/projects/artist2d/output/mega/mega_preview.png"
+  }
+}

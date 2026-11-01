@@ -1,0 +1,32 @@
+{
+  "action": "jump",
+  "frames": 8,
+  "locked_pixels": 46,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0014,
+  "verification": {
+    "action": "jump",
+    "static_pixel_checks": 22,
+    "static_diff_before": 18,
+    "static_diff_after": 0,
+    "feature_metric": "informational",
+    "tracked_features": 69,
+    "feature_audit": {
+      "features": 69,
+      "checked": 224,
+      "drift": 81,
+      "missing": 40,
+      "ignored": 151,
+      "static_checked": 0,
+      "static_drift": 0,
+      "static_missing": 0,
+      "moving_checked": 224,
+      "moving_drift": 81,
+      "moving_missing": 40
+    },
+    "feature_audit_affine": null
+  },
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/jump"
+}

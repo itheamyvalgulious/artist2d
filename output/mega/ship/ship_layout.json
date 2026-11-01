@@ -1,0 +1,50 @@
+{
+  "scene": {
+    "width_tiles": 48,
+    "height_tiles": 20,
+    "tile_size": 32,
+    "floor_row": 16
+  },
+  "mega_elements": [
+    {
+      "id": "hull_frame",
+      "count": 10,
+      "placement": "stacked ribs at x=0,10,22,34,46"
+    },
+    {
+      "id": "viewport",
+      "count": 1,
+      "placement": "x=16,y=4"
+    },
+    {
+      "id": "reactor_core",
+      "count": 1,
+      "placement": "x=40,floor"
+    }
+  ],
+  "medium_structures": [
+    {
+      "id": "cargo_stack",
+      "count": 2,
+      "placement": "x=4 and x=45 (flipped)"
+    },
+    {
+      "id": "console_bank",
+      "count": 1,
+      "placement": "x=23"
+    },
+    {
+      "id": "server_rack",
+      "count": 1,
+      "placement": "x=32"
+    }
+  ],
+  "character": [
+    "idle frame 00 (right)",
+    "shoot2 frame 02 (left, flipped)"
+  ],
+  "palette_violations": [
+    0,
+    0
+  ]
+}

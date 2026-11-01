@@ -1,0 +1,74 @@
+{
+  "deck": {
+    "phase": [
+      0,
+      2
+    ],
+    "ks": {
+      "ks_statistic": 0.04939516129032262,
+      "p_value": 0.9964993218188652,
+      "p_value_3x3": 0.3078465025853946,
+      "pass": true,
+      "n_seam": 64,
+      "n_interior": 1984
+    },
+    "violations": [
+      0,
+      0
+    ]
+  },
+  "wall": {
+    "phase": [
+      30,
+      25
+    ],
+    "ks": {
+      "ks_statistic": 0.03881048387096775,
+      "p_value": 0.9999459695777244,
+      "p_value_3x3": 0.6087314623355846,
+      "pass": true,
+      "n_seam": 64,
+      "n_interior": 1984
+    },
+    "violations": [
+      0,
+      0
+    ]
+  },
+  "grate": {
+    "phase": [
+      21,
+      29
+    ],
+    "ks": {
+      "ks_statistic": 0.02620967741935487,
+      "p_value": 0.9999999998561881,
+      "p_value_3x3": 0.9524118327403119,
+      "pass": true,
+      "n_seam": 64,
+      "n_interior": 1984
+    },
+    "violations": [
+      0,
+      0
+    ]
+  },
+  "conduit": {
+    "phase": [
+      22,
+      2
+    ],
+    "ks": {
+      "ks_statistic": 0.047883064516129004,
+      "p_value": 0.997725264410364,
+      "p_value_3x3": 0.34371496440308114,
+      "pass": true,
+      "n_seam": 64,
+      "n_interior": 1984
+    },
+    "violations": [
+      0,
+      0
+    ]
+  }
+}

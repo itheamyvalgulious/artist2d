@@ -1,0 +1,79 @@
+{
+  "method": "gemini-2x2-animation-sheet + rank color match + seam inpaint",
+  "model_tag": "water-anim-2x2-v1",
+  "frames": 4,
+  "frame_diffs": [
+    17.24,
+    17.33,
+    14.51,
+    9.51
+  ],
+  "loop_diff": 9.51,
+  "ks_pass": true,
+  "per_frame": [
+    {
+      "frame": 0,
+      "method": "inpaint",
+      "ks": {
+        "ks_statistic": 0.025705645161290258,
+        "p_value": 0.9999999999428345,
+        "p_value_3x3": 0.9594946677227063,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 1,
+      "method": "inpaint",
+      "ks": {
+        "ks_statistic": 0.02116935483870963,
+        "p_value": 1.0,
+        "p_value_3x3": 0.99474649005861,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 2,
+      "method": "inpaint",
+      "ks": {
+        "ks_statistic": 0.02318548387096775,
+        "p_value": 0.999999999999774,
+        "p_value_3x3": 0.9847983137743055,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 3,
+      "method": "inpaint",
+      "ks": {
+        "ks_statistic": 0.029233870967741882,
+        "p_value": 0.9999999857008657,
+        "p_value_3x3": 0.8953592140302534,
+        "pass": true,
+        "n_seam": 64,
+        "n_interior": 1984
+      },
+      "violations": [
+        0,
+        0
+      ]
+    }
+  ]
+}

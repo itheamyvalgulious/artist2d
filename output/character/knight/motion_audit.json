@@ -1,0 +1,186 @@
+{
+  "camera": [
+    -70.0,
+    37.0,
+    20.0
+  ],
+  "candidates": [
+    {
+      "clip": "1H_Melee_Attack_Chop",
+      "kind": "forward_chop",
+      "range": {
+        "x": 9.0,
+        "y": 32.11,
+        "z": 31.08
+      },
+      "impact_frame": 25,
+      "impact_delta": {
+        "dx": 2.66,
+        "dy": -6.96,
+        "dz": 2.65
+      },
+      "sword_near_fraction": 1.0,
+      "score": 49.27,
+      "tip_start": [
+        -17.86,
+        24.26,
+        18.0
+      ],
+      "tip_impact": [
+        -15.19,
+        17.3,
+        20.65
+      ],
+      "tip_end": [
+        -17.77,
+        23.93,
+        18.11
+      ]
+    },
+    {
+      "clip": "1H_Melee_Attack_Slice_Diagonal",
+      "kind": "lateral_slash",
+      "range": {
+        "x": 36.19,
+        "y": 19.6,
+        "z": 22.13
+      },
+      "impact_frame": 20,
+      "impact_delta": {
+        "dx": -9.98,
+        "dy": -7.28,
+        "dz": -15.5
+      },
+      "sword_near_fraction": 1.0,
+      "score": -10.47,
+      "tip_start": [
+        -17.86,
+        24.26,
+        18.0
+      ],
+      "tip_impact": [
+        -27.84,
+        16.98,
+        2.5
+      ],
+      "tip_end": [
+        -18.01,
+        24.11,
+        17.87
+      ]
+    },
+    {
+      "clip": "1H_Melee_Attack_Slice_Horizontal",
+      "kind": "lateral_slash",
+      "range": {
+        "x": 46.52,
+        "y": 6.23,
+        "z": 25.9
+      },
+      "impact_frame": 8,
+      "impact_delta": {
+        "dx": 1.95,
+        "dy": -0.68,
+        "dz": 0.62
+      },
+      "sword_near_fraction": 1.0,
+      "score": -32.89,
+      "tip_start": [
+        -17.86,
+        24.26,
+        18.0
+      ],
+      "tip_impact": [
+        -15.91,
+        23.58,
+        18.62
+      ],
+      "tip_end": [
+        -19.06,
+        24.55,
+        16.5
+      ]
+    },
+    {
+      "clip": "1H_Melee_Attack_Stab",
+      "kind": "thrust",
+      "range": {
+        "x": 11.96,
+        "y": 6.85,
+        "z": 21.9
+      },
+      "impact_frame": 17,
+      "impact_delta": {
+        "dx": 9.27,
+        "dy": -2.86,
+        "dz": 7.09
+      },
+      "sword_near_fraction": 1.0,
+      "score": 15.44,
+      "tip_start": [
+        -17.86,
+        24.26,
+        18.0
+      ],
+      "tip_impact": [
+        -8.59,
+        21.4,
+        25.1
+      ],
+      "tip_end": [
+        -17.75,
+        24.22,
+        18.1
+      ]
+    },
+    {
+      "clip": "2H_Melee_Attack_Chop",
+      "kind": "mixed",
+      "range": {
+        "x": 27.41,
+        "y": 22.05,
+        "z": 22.97
+      },
+      "impact_frame": 20,
+      "impact_delta": {
+        "dx": -14.59,
+        "dy": -15.05,
+        "dz": -5.95
+      },
+      "sword_near_fraction": 1.0,
+      "score": 5.48,
+      "tip_start": [
+        -5.7,
+        34.12,
+        14.15
+      ],
+      "tip_impact": [
+        -20.3,
+        19.06,
+        8.2
+      ],
+      "tip_end": [
+        -6.05,
+        33.89,
+        14.35
+      ]
+    }
+  ],
+  "ranked": [
+    "1H_Melee_Attack_Chop",
+    "1H_Melee_Attack_Stab",
+    "2H_Melee_Attack_Chop",
+    "1H_Melee_Attack_Slice_Diagonal",
+    "1H_Melee_Attack_Slice_Horizontal"
+  ],
+  "chosen_clip": "1H_Melee_Attack_Chop",
+  "chosen_kind": "forward_chop",
+  "chosen_impact_frame": 25,
+  "orientation_sheet": "work/character/knight/attack_orientation.png",
+  "sword_near_ok": true,
+  "requirements": {
+    "forward_component": true,
+    "vertical_component": true,
+    "sword_near_camera": true
+  }
+}

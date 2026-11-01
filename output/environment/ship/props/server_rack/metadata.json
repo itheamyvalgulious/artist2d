@@ -1,0 +1,27 @@
+{
+  "id": "server_rack",
+  "name": "Server Rack",
+  "kind": "medium structure",
+  "size": [
+    64,
+    112
+  ],
+  "pivot": [
+    32,
+    112
+  ],
+  "layer": "sorted_body",
+  "collision": true,
+  "catalog_size": [
+    64,
+    112
+  ],
+  "palette_violations": [
+    0,
+    0
+  ],
+  "source": {
+    "model": "gemini-nano-banana-2.1",
+    "prompt": "A single medium structure side-view 2D pixel-art asset for a sci-fi cyberpunk spaceship interior: a tall spaceship server rack with rows of blinking cyan and violet status lights, vents, cable bundles and a dark metal frame, side view. The object is fully visible and centred, flat side-view orthographic, no perspective, no ground plane, no cast shadow, no character, no text, no UI labels. Solid magenta #FF00FF background, completely flat and empty. Match the palette, pixel size, 1px outline weight, rivets, panel seams and cyan/violet lighting of the reference image. side-view 2D pixel art for a sci-fi cyberpunk spaceship interior: dark gunmetal and navy plating, rivets and panel seams, cyan holographic light strips, violet accent panels, small warm hazard markings, 1px near-black outline, crisp large pixel clusters, flat three-tone shading, 64-colour limited palette, zero anti-aliasing, zero blur, no gradients"
+  }
+}

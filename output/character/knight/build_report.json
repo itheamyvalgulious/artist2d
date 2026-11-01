@@ -1,0 +1,46 @@
+{
+  "idle": {
+    "action": "idle",
+    "frames": 8,
+    "locked_pixels": 1390,
+    "features_repaired": 177,
+    "static_features": true,
+    "static_ratio": 0.0424,
+    "verification": {
+      "action": "idle",
+      "static_pixel_checks": 701,
+      "static_diff_before": 350,
+      "static_diff_after": 0,
+      "feature_metric": "image_static",
+      "tracked_features": 76,
+      "feature_audit": {
+        "features": 76,
+        "checked": 308,
+        "drift": 0,
+        "missing": 2,
+        "ignored": 98,
+        "static_checked": 308,
+        "static_drift": 0,
+        "static_missing": 2,
+        "moving_checked": 0,
+        "moving_drift": 0,
+        "moving_missing": 0
+      },
+      "feature_audit_affine": {
+        "features": 76,
+        "checked": 322,
+        "drift": 42,
+        "missing": 1,
+        "ignored": 84,
+        "static_checked": 88,
+        "static_drift": 0,
+        "static_missing": 0,
+        "moving_checked": 234,
+        "moving_drift": 42,
+        "moving_missing": 1
+      }
+    },
+    "sheets": "sheet.png",
+    "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/idle"
+  }
+}

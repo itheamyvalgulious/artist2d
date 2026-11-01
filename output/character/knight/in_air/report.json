@@ -1,0 +1,32 @@
+{
+  "action": "in_air",
+  "frames": 8,
+  "locked_pixels": 1416,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0432,
+  "verification": {
+    "action": "in_air",
+    "static_pixel_checks": 999,
+    "static_diff_before": 720,
+    "static_diff_after": 0,
+    "feature_metric": "informational",
+    "tracked_features": 90,
+    "feature_audit": {
+      "features": 90,
+      "checked": 348,
+      "drift": 89,
+      "missing": 66,
+      "ignored": 210,
+      "static_checked": 0,
+      "static_drift": 0,
+      "static_missing": 0,
+      "moving_checked": 348,
+      "moving_drift": 89,
+      "moving_missing": 66
+    },
+    "feature_audit_affine": null
+  },
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/in_air"
+}

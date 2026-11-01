@@ -1,0 +1,22 @@
+config_version=5
+
+[application]
+config/name="PixelMannequin"
+run/main_scene="res://scenes/empty.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[display]
+window/size/viewport_width=512
+window/size/viewport_height=512
+window/size/resizable=false
+window/vsync/vsync_mode=0
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+anti_aliasing/quality/msaa_3d=0
+anti_aliasing/quality/screen_space_aa=0
+anti_aliasing/quality/use_taa=false
+environment/defaults/default_clear_color=Color(1, 0, 1, 1)
+environment/defaults/default_environment=""

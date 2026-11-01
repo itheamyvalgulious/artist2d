@@ -1,0 +1,14 @@
+{
+  "module": "stamp_medium",
+  "grid": "4x5",
+  "true_pixels": "128x160",
+  "ground_rows": 2,
+  "tile_count": 20,
+  "palette_violations": 0,
+  "output_dir": "/dat/projects/artist2d/output/environment/stamp",
+  "files": {
+    "stamp_matted": "/dat/projects/artist2d/output/environment/stamp/stamp_matted.png",
+    "metadata": "/dat/projects/artist2d/output/environment/stamp/stamp_metadata.json",
+    "ysort_demo": "/dat/projects/artist2d/output/environment/stamp/ysort_demo.png"
+  }
+}

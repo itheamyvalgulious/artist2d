@@ -1,0 +1,27 @@
+{
+  "id": "console_bank",
+  "name": "Console Bank",
+  "kind": "medium structure",
+  "size": [
+    128,
+    64
+  ],
+  "pivot": [
+    64,
+    64
+  ],
+  "layer": "sorted_body",
+  "collision": true,
+  "catalog_size": [
+    128,
+    64
+  ],
+  "palette_violations": [
+    0,
+    0
+  ],
+  "source": {
+    "model": "gemini-nano-banana-2.1",
+    "prompt": "A single medium structure side-view 2D pixel-art asset for a sci-fi cyberpunk spaceship interior: a wide spaceship control console bank, twice as wide as tall, angled screen panels with cyan holographic displays, rows of buttons, cables and a dark metal housing, side view. The object is fully visible and centred, flat side-view orthographic, no perspective, no ground plane, no cast shadow, no character, no text, no UI labels. Solid magenta #FF00FF background, completely flat and empty. Match the palette, pixel size, 1px outline weight, rivets, panel seams and cyan/violet lighting of the reference image. side-view 2D pixel art for a sci-fi cyberpunk spaceship interior: dark gunmetal and navy plating, rivets and panel seams, cyan holographic light strips, violet accent panels, small warm hazard markings, 1px near-black outline, crisp large pixel clusters, flat three-tone shading, 64-colour limited palette, zero anti-aliasing, zero blur, no gradients"
+  }
+}

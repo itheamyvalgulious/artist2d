@@ -1,0 +1,44 @@
+{
+  "action": "defend",
+  "frames": 8,
+  "locked_pixels": 1943,
+  "features_repaired": 173,
+  "static_features": true,
+  "static_ratio": 0.0593,
+  "verification": {
+    "action": "defend",
+    "static_pixel_checks": 613,
+    "static_diff_before": 320,
+    "static_diff_after": 0,
+    "feature_metric": "image_static",
+    "tracked_features": 92,
+    "feature_audit": {
+      "features": 92,
+      "checked": 339,
+      "drift": 0,
+      "missing": 0,
+      "ignored": 89,
+      "static_checked": 339,
+      "static_drift": 0,
+      "static_missing": 0,
+      "moving_checked": 0,
+      "moving_drift": 0,
+      "moving_missing": 0
+    },
+    "feature_audit_affine": {
+      "features": 92,
+      "checked": 346,
+      "drift": 48,
+      "missing": 0,
+      "ignored": 82,
+      "static_checked": 72,
+      "static_drift": 0,
+      "static_missing": 0,
+      "moving_checked": 274,
+      "moving_drift": 48,
+      "moving_missing": 0
+    }
+  },
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/defend"
+}

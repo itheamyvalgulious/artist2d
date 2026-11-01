@@ -1,0 +1,13 @@
+{
+  "spec": {
+    "name": "knight",
+    "description": "a wandering knight in weathered steel plate armour with a deep crimson tabard, a round wooden shield with an iron boss strapped to the left arm, and a long greatsword gripped in the right hand",
+    "style": "TRUE low-resolution pixel art: large crisp square pixel clusters, 1px near-black outline, 32 colour limited palette, flat three-tone shading, zero anti-aliasing, zero blur, no gradients",
+    "ref_extra": "helmet with a closed visor and a small crest, battle-worn plate, crimson cloth at the waist"
+  },
+  "prompt": "Full-body 2D pixel art character sprite of a wandering knight in weathered steel plate armour with a deep crimson tabard, a round wooden shield with an iron boss strapped to the left arm, and a long greatsword gripped in the right hand. Orthographic near-profile view from the character's RIGHT side (the sword side), about 75 degrees off the front: the right arm and the greatsword are nearest the camera, the round wooden shield on the left arm is on the FAR side, mostly behind the body and seen at a steep foreshortened angle so it never covers the chest or the sword. Neutral standing A-pose, both feet visible, entire body from head to boots centred in frame with a margin on every side. TRUE low-resolution pixel art: large crisp square pixel clusters, 1px near-black outline, 32 colour limited palette, flat three-tone shading, zero anti-aliasing, zero blur, no gradients. Background: solid pure magenta #FF00FF, completely flat and empty. No grid lines, no checkerboard, no ground, no cast shadow, no text, no border, no UI.",
+  "violations": [
+    0,
+    0
+  ]
+}

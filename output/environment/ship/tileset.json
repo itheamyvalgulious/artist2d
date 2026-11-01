@@ -1,0 +1,117 @@
+{
+  "tile_size": 32,
+  "columns": 8,
+  "rows": 3,
+  "tiles": {
+    "ceiling": {
+      "index": 0,
+      "col": 0,
+      "row": 0
+    },
+    "deck_fill": {
+      "index": 1,
+      "col": 1,
+      "row": 0
+    },
+    "deck_left": {
+      "index": 2,
+      "col": 2,
+      "row": 0
+    },
+    "deck_right": {
+      "index": 3,
+      "col": 3,
+      "row": 0
+    },
+    "deck_top": {
+      "index": 4,
+      "col": 4,
+      "row": 0
+    },
+    "deck_top_left": {
+      "index": 5,
+      "col": 5,
+      "row": 0
+    },
+    "deck_top_right": {
+      "index": 6,
+      "col": 6,
+      "row": 0
+    },
+    "grate_fill": {
+      "index": 7,
+      "col": 7,
+      "row": 0
+    },
+    "grate_top": {
+      "index": 8,
+      "col": 0,
+      "row": 1
+    },
+    "hazard": {
+      "index": 9,
+      "col": 1,
+      "row": 1
+    },
+    "light_strip": {
+      "index": 10,
+      "col": 2,
+      "row": 1
+    },
+    "pipe_h": {
+      "index": 11,
+      "col": 3,
+      "row": 1
+    },
+    "pipe_v": {
+      "index": 12,
+      "col": 4,
+      "row": 1
+    },
+    "vent": {
+      "index": 13,
+      "col": 5,
+      "row": 1
+    },
+    "wall": {
+      "index": 14,
+      "col": 6,
+      "row": 1
+    },
+    "wall_flat": {
+      "index": 15,
+      "col": 7,
+      "row": 1
+    },
+    "wall_flat_light": {
+      "index": 16,
+      "col": 0,
+      "row": 2
+    },
+    "wall_flat_violet": {
+      "index": 17,
+      "col": 1,
+      "row": 2
+    },
+    "wall_light": {
+      "index": 18,
+      "col": 2,
+      "row": 2
+    },
+    "wall_plain": {
+      "index": 19,
+      "col": 3,
+      "row": 2
+    },
+    "wall_violet": {
+      "index": 20,
+      "col": 4,
+      "row": 2
+    },
+    "window": {
+      "index": 21,
+      "col": 5,
+      "row": 2
+    }
+  }
+}

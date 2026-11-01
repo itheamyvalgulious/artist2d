@@ -1,0 +1,13 @@
+{
+  "set": "ship",
+  "scene_1x": [
+    1536,
+    640
+  ],
+  "scene": "scene.png",
+  "palette_violations": [
+    0,
+    0
+  ],
+  "character": "agent idle/shoot2"
+}

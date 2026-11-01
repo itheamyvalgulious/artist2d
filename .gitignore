@@ -1,0 +1,23 @@
+# ---- Python ----
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ---- credentials ----
+.env
+.env.*
+!.env.example
+
+# ---- large local artifacts (kept on disk, not in git) ----
+# Intermediate AI responses, masks, 3D truth channels; see README §5.
+work/
+# Raw OpenCode session exports (~340 MB); only README + exporter are tracked.
+archive_trajectory/original_ses_*/
+archive_trajectory/fork_ses_*/
+
+# ---- OS / editor ----
+.DS_Store
+.idea/
+.vscode/
+*.swp

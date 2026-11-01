@@ -1,0 +1,32 @@
+{
+  "action": "attack",
+  "frames": 8,
+  "locked_pixels": 135,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0041,
+  "verification": {
+    "action": "attack",
+    "static_pixel_checks": 89,
+    "static_diff_before": 73,
+    "static_diff_after": 0,
+    "feature_metric": "informational",
+    "tracked_features": 57,
+    "feature_audit": {
+      "features": 57,
+      "checked": 232,
+      "drift": 87,
+      "missing": 41,
+      "ignored": 161,
+      "static_checked": 6,
+      "static_drift": 0,
+      "static_missing": 4,
+      "moving_checked": 226,
+      "moving_drift": 87,
+      "moving_missing": 37
+    },
+    "feature_audit_affine": null
+  },
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/attack"
+}

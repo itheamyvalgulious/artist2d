@@ -1,0 +1,32 @@
+{
+  "action": "running",
+  "frames": 8,
+  "locked_pixels": 17,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0005,
+  "verification": {
+    "action": "running",
+    "static_pixel_checks": 15,
+    "static_diff_before": 9,
+    "static_diff_after": 0,
+    "feature_metric": "informational",
+    "tracked_features": 104,
+    "feature_audit": {
+      "features": 104,
+      "checked": 316,
+      "drift": 100,
+      "missing": 60,
+      "ignored": 340,
+      "static_checked": 3,
+      "static_drift": 0,
+      "static_missing": 1,
+      "moving_checked": 313,
+      "moving_drift": 100,
+      "moving_missing": 59
+    },
+    "feature_audit_affine": null
+  },
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/knight/mannequin/running"
+}

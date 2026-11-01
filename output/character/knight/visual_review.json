@@ -1,0 +1,422 @@
+{
+  "idle": {
+    "answer": {
+      "view": "three_quarter",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "idle",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "Clean idle animation matching expected orientation and weapon placement.",
+      "expected_action": "idle",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"three_quarter\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"idle\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"Clean idle animation matching expected orientation and weapon placement.\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 1243,
+      "completion_tokens": 369,
+      "total_tokens": 1612,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 1243,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 56,
+          "totalTokenCount": 1612,
+          "thoughtsTokenCount": 313,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1034
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 209
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 56
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 209,
+        "audio_tokens": 0,
+        "image_tokens": 1034
+      },
+      "completion_tokens_details": {
+        "text_tokens": 56,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 313
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  },
+  "running": {
+    "answer": {
+      "view": "right_profile",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "running",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "Correct profile running animation with proper sword and shield placement.",
+      "expected_action": "running",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"right_profile\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"running\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"Correct profile running animation with proper sword and shield placement.\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 1245,
+      "completion_tokens": 198,
+      "total_tokens": 1443,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 1245,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 57,
+          "totalTokenCount": 1443,
+          "thoughtsTokenCount": 141,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 211
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1034
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 57
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 211,
+        "audio_tokens": 0,
+        "image_tokens": 1034
+      },
+      "completion_tokens_details": {
+        "text_tokens": 57,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 141
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  },
+  "attack": {
+    "answer": {
+      "view": "three_quarter",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "forward_chop",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "Good right-side attack animation with forward chop and clean pixel art.",
+      "expected_action": "forward_chop",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"three_quarter\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"forward_chop\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"Good right-side attack animation with forward chop and clean pixel art.\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 2336,
+      "completion_tokens": 1632,
+      "total_tokens": 3968,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 2336,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 62,
+          "totalTokenCount": 3968,
+          "thoughtsTokenCount": 1570,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 214
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 2122
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 62
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 214,
+        "audio_tokens": 0,
+        "image_tokens": 2122
+      },
+      "completion_tokens_details": {
+        "text_tokens": 62,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 1570
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  },
+  "defend": {
+    "answer": {
+      "view": "right_profile",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "shield_block",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "correct profile defend stance with shield forward and sword held near",
+      "expected_action": "shield_block",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"right_profile\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"shield_block\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"correct profile defend stance with shield forward and sword held near\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 1249,
+      "completion_tokens": 186,
+      "total_tokens": 1435,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 1249,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 59,
+          "totalTokenCount": 1435,
+          "thoughtsTokenCount": 127,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 215
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1034
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 59
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 215,
+        "audio_tokens": 0,
+        "image_tokens": 1034
+      },
+      "completion_tokens_details": {
+        "text_tokens": 59,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 127
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  },
+  "jump": {
+    "answer": {
+      "view": "three_quarter",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "jump",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "Proper crouch anticipation animation with correct equipment placement and clean frames.",
+      "expected_action": "jump",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"three_quarter\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"jump\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"Proper crouch anticipation animation with correct equipment placement and clean frames.\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 1245,
+      "completion_tokens": 960,
+      "total_tokens": 2205,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 1245,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 59,
+          "totalTokenCount": 2205,
+          "thoughtsTokenCount": 901,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1034
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 211
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 59
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 211,
+        "audio_tokens": 0,
+        "image_tokens": 1034
+      },
+      "completion_tokens_details": {
+        "text_tokens": 59,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 901
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  },
+  "in_air": {
+    "answer": {
+      "view": "right_profile",
+      "sword_hand": "near",
+      "shield_side": "far",
+      "action": "airborne",
+      "pink_or_magenta_block": false,
+      "detached_feet": false,
+      "pass": true,
+      "notes": "Correct airborne pose with near sword and far shield, clean sprites.",
+      "expected_action": "airborne",
+      "action_ok": true,
+      "camera_ok": true,
+      "artifact_ok": true
+    },
+    "raw": "{\"view\":\"right_profile\",\"sword_hand\":\"near\",\"shield_side\":\"far\",\"action\":\"airborne\",\"pink_or_magenta_block\":false,\"detached_feet\":false,\"pass\":true,\"notes\":\"Correct airborne pose with near sword and far shield, clean sprites.\"}",
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "prompt_tokens": 1243,
+      "completion_tokens": 570,
+      "total_tokens": 1813,
+      "billing_usage": {
+        "source": "gemini_chat",
+        "semantic": "gemini",
+        "gemini_usage_metadata": {
+          "promptTokenCount": 1243,
+          "toolUsePromptTokenCount": 0,
+          "candidatesTokenCount": 60,
+          "totalTokenCount": 1813,
+          "thoughtsTokenCount": 510,
+          "cachedContentTokenCount": 0,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 209
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1034
+            }
+          ],
+          "toolUsePromptTokensDetails": [],
+          "candidatesTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 60
+            }
+          ]
+        }
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 209,
+        "audio_tokens": 0,
+        "image_tokens": 1034
+      },
+      "completion_tokens_details": {
+        "text_tokens": 60,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 510
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "pass": true
+  }
+}

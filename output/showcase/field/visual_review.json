@@ -1,0 +1,64 @@
+{
+  "answer": {
+    "consistent_pixel_scale": true,
+    "sprite_grounded": true,
+    "buildings_grounded": true,
+    "pink_or_broken_tiles": true,
+    "pass": false,
+    "notes": "Severely broken tiles and cutoffs around the central gate and adjacent pillar."
+  },
+  "raw": "{\"consistent_pixel_scale\":true,\"sprite_grounded\":true,\"buildings_grounded\":true,\"pink_or_broken_tiles\":true,\"pass\":false,\"notes\":\"Severely broken tiles and cutoffs around the central gate and adjacent pillar.\"}",
+  "model": "gemini-3.8-flash",
+  "usage": {
+    "prompt_tokens": 1211,
+    "completion_tokens": 543,
+    "total_tokens": 1754,
+    "billing_usage": {
+      "source": "gemini_chat",
+      "semantic": "gemini",
+      "gemini_usage_metadata": {
+        "promptTokenCount": 1211,
+        "toolUsePromptTokenCount": 0,
+        "candidatesTokenCount": 55,
+        "totalTokenCount": 1754,
+        "thoughtsTokenCount": 488,
+        "cachedContentTokenCount": 0,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 131
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1080
+          }
+        ],
+        "toolUsePromptTokensDetails": [],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 55
+          }
+        ]
+      }
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "text_tokens": 131,
+      "audio_tokens": 0,
+      "image_tokens": 1080
+    },
+    "completion_tokens_details": {
+      "text_tokens": 55,
+      "audio_tokens": 0,
+      "image_tokens": 0,
+      "reasoning_tokens": 488
+    },
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "input_tokens_details": null,
+    "claude_cache_creation_5_m_tokens": 0,
+    "claude_cache_creation_1_h_tokens": 0
+  },
+  "pass": false
+}
