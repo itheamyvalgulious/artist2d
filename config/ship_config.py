@@ -89,9 +89,10 @@ MEGA_ELEMENTS: list[dict] = [
         "id": "reactor_core",
         "name": "Reactor Core",
         "size": (128, 192),
-        "desc": ("a spaceship reactor core module, vertical cylindrical reactor with "
-                 "glowing cyan energy rings, violet magnetic coils, thick pipes and "
-                 "cable bundles, hazard stripes at the base, side view"),
+        "desc": ("a bilaterally symmetric vertical spaceship reactor core, hard-edged cyan "
+                 "energy rings with a bright core and a 1px darker rim (no soft gradient), "
+                 "symmetric violet coil plates with 1px dark outline, thick metal pipes and "
+                 "cable clamps, hazard stripes at the base, side view"),
     },
     {
         "id": "bulkhead_door",
@@ -211,15 +212,19 @@ MEDIUM_STRUCTURES: list[dict] = [
         "id": "cargo_stack",
         "name": "Cargo Stack",
         "size": (64, 96),
-        "desc": ("a tall stack of three industrial cargo containers, dark metal with "
-                 "hazard stripes, straps and small cyan inventory labels, side view"),
+        "desc": ("a tall stack of three clearly separate industrial cargo containers, "
+                 "each with a visible lid plane, a darker front face, 1px black outline, "
+                 "corner brackets, two horizontal straps, a stencilled number and one warm "
+                 "hazard stripe; strong three-tone value contrast, side view, not a flat wall panel"),
     },
     {
         "id": "server_rack",
         "name": "Server Rack",
         "size": (64, 112),
-        "desc": ("a tall spaceship server rack with rows of blinking cyan and violet "
-                 "status lights, vents, cable bundles and a dark metal frame, side view"),
+        "desc": ("a solid tall spaceship server cabinet with a closed rectangular body, "
+                 "rows of louvered vent slots, cyan and violet status LEDs, cable bundles at "
+                 "the base and a dark 1px outline; no X-brace lattice, no see-through holes, "
+                 "no protruding tabs, side view"),
     },
     {
         "id": "med_pod",

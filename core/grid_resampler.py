@@ -177,15 +177,41 @@ def resample_sprite_coverage(img: Image.Image, target: tuple[int, int],
 def matte_keyed(big: Image.Image, bg_rgb: np.ndarray | None = None) -> Image.Image:
     """Matte a 512-px character canvas against a flat key colour.
 
-    Key-colour pixels are removed anywhere (including pockets trapped inside
-    the silhouette); tiny detached specks are dropped while blades/hair locks
-    survive.  This high-res RGBA frame is the single source of truth for both
-    the 512-px animation and the 64-px downsample, so the two cannot disagree
-    about which pixels are character.
+    The key is removed where it is *connected to the border* (plus edge spill),
+    and only large enclosed pockets of near-pure key colour are removed.  A
+    global "violet == magenta" rule used to punch the violet iris out of the
+    face; small key-coloured details enclosed by the character must survive.
     """
     rgb = np.array(big.convert("RGB"))
     bg = estimate_background(big) if bg_rgb is None else np.asarray(bg_rgb, dtype=np.float64)
-    mask = background_mask_all(rgb, bg)
+    mask = background_mask(rgb, bg)
+    # Interior key-coloured pockets (between an arm and the torso, inside a
+    # trigger guard) are background; a violet iris is not key-coloured.
+    lab = rgb_to_lab(rgb)
+    dist = np.linalg.norm(lab - rgb_to_lab(bg.reshape(1, 3)), axis=-1)
+    pure = dist < 30.0
+    if pure.any():
+        comp, n = ndimage.label(pure)
+        sizes = np.bincount(comp.ravel())
+        sizes[0] = 0
+        for k in range(1, n + 1):
+            if sizes[k] < 4:
+                continue
+            blob = comp == k
+            if not (blob & mask).any():
+                mask |= blob
+    # Magenta spill that survived palette quantisation (violet-looking patch
+    # inside the gun) has high red/blue-vs-green affinity.  Keep the head
+    # region untouched so the violet iris is never eaten.
+    rf = rgb.astype(np.int32)
+    affinity = np.minimum(rf[..., 0], rf[..., 2]) - rf[..., 1]
+    fg = ~mask
+    ys, xs = np.nonzero(fg)
+    if len(ys):
+        head_lim = int(ys.min()) + int((ys.max() - ys.min()) * 0.22)
+        spill = affinity > 80
+        spill[:head_lim, :] = False
+        mask |= spill
     rgba = np.dstack([rgb, np.where(mask, 0, 255).astype(np.uint8)])
     rgba[..., 3] = np.where(
         remove_detached_specks(rgba[..., 3] > 0, min_area=8, near=2), 255, 0)

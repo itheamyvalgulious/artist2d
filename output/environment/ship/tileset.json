@@ -1,7 +1,7 @@
 {
   "tile_size": 32,
   "columns": 8,
-  "rows": 3,
+  "rows": 4,
   "tiles": {
     "ceiling": {
       "index": 0,
@@ -23,95 +23,110 @@
       "col": 3,
       "row": 0
     },
-    "deck_top": {
+    "deck_step": {
       "index": 4,
       "col": 4,
       "row": 0
     },
-    "deck_top_left": {
+    "deck_step_left": {
       "index": 5,
       "col": 5,
       "row": 0
     },
-    "deck_top_right": {
+    "deck_step_right": {
       "index": 6,
       "col": 6,
       "row": 0
     },
-    "grate_fill": {
+    "deck_top": {
       "index": 7,
       "col": 7,
       "row": 0
     },
-    "grate_top": {
+    "deck_top_right": {
       "index": 8,
       "col": 0,
       "row": 1
     },
-    "hazard": {
+    "door": {
       "index": 9,
       "col": 1,
       "row": 1
     },
-    "light_strip": {
+    "door_top": {
       "index": 10,
       "col": 2,
       "row": 1
     },
-    "pipe_h": {
+    "grate_fill": {
       "index": 11,
       "col": 3,
       "row": 1
     },
-    "pipe_v": {
+    "grate_top": {
       "index": 12,
       "col": 4,
       "row": 1
     },
-    "vent": {
+    "hazard": {
       "index": 13,
       "col": 5,
       "row": 1
     },
-    "wall": {
+    "light_strip": {
       "index": 14,
       "col": 6,
       "row": 1
     },
-    "wall_flat": {
+    "pipe_h": {
       "index": 15,
       "col": 7,
       "row": 1
     },
-    "wall_flat_light": {
+    "pipe_v": {
       "index": 16,
       "col": 0,
       "row": 2
     },
-    "wall_flat_violet": {
+    "vent": {
       "index": 17,
       "col": 1,
       "row": 2
     },
-    "wall_light": {
+    "wall": {
       "index": 18,
       "col": 2,
       "row": 2
     },
-    "wall_plain": {
+    "wall_flat": {
       "index": 19,
       "col": 3,
       "row": 2
     },
-    "wall_violet": {
+    "wall_flat_light": {
       "index": 20,
       "col": 4,
       "row": 2
     },
-    "window": {
+    "wall_flat_violet": {
       "index": 21,
       "col": 5,
       "row": 2
+    },
+    "wall_light": {
+      "index": 22,
+      "col": 6,
+      "row": 2
+    },
+    "wall_violet": {
+      "index": 23,
+      "col": 7,
+      "row": 2
+    },
+    "window": {
+      "index": 24,
+      "col": 0,
+      "row": 3
     }
   }
 }

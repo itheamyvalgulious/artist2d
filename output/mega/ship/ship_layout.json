@@ -8,40 +8,47 @@
   "mega_elements": [
     {
       "id": "hull_frame",
-      "count": 10,
-      "placement": "stacked ribs at x=0,10,22,34,46"
+      "count": 5,
+      "placement": "single 448px ribs at x=0,10,22,34,44 (ceiling y=64 to floor y=512), identical top-left light"
     },
     {
       "id": "viewport",
       "count": 1,
-      "placement": "x=16,y=4"
+      "placement": "x=16,y=4 with recessed mount"
     },
     {
       "id": "reactor_core",
       "count": 1,
-      "placement": "x=40,floor"
+      "placement": "centred on the 6-tile hazard platform in the right bay, standing on its 4-px tread (base y=480)"
     }
   ],
   "medium_structures": [
     {
       "id": "cargo_stack",
       "count": 2,
-      "placement": "x=4 and x=45 (flipped)"
+      "placement": "left bay: 3-crate stack at x=143 (y=425-511) and a shorter 2-crate stack mirrored at x=245 (y=451-511), 102 px apart"
     },
     {
       "id": "console_bank",
       "count": 1,
-      "placement": "x=23"
+      "placement": "x=16 on the raised dais under the viewport"
     },
     {
       "id": "server_rack",
       "count": 1,
-      "placement": "x=32"
+      "placement": "door bay, x=872 px"
     }
   ],
+  "platforms": {
+    "dais": "tiles 15-20 (x=480-671), base row 511, own contact shadow rows 514-516",
+    "reactor_pad": "5 tiles (x=1232-1391), centred in the 6-tile bay; 4-px tread 480-483, hazard side face 484-511, own contact shadow rows 514-516"
+  },
+  "tiles_in_scene": {
+    "door": "tile 31 (x=992..1023), rows 14-15 (y=448..511)",
+    "hazard": "raised 1-tile platform: 4-px tread on top, hazard on the side face only, chamfered ends, own contact shadow on the deck"
+  },
   "character": [
-    "idle frame 00 (right)",
-    "shoot2 frame 02 (left, flipped)"
+    "idle frame 00 pasted at x=934, opaque body x=950-981, i.e. 10 px left of the door (x=992-1023), facing right toward it"
   ],
   "palette_violations": [
     0,

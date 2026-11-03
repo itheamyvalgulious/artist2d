@@ -24,7 +24,15 @@ from core.grid_resampler import (
     resample_to_true_pixel,
     upscale_nearest,
 )
-from core.palette_quantizer import lock_palette, palette_violations
+from core.palette_quantizer import (
+    BAYER4,
+    PALETTE_RGB,
+    RAMP_SIZE,
+    lock_palette,
+    nearest_palette_indices,
+    palette_violations,
+)
+from environment.ship_props_det import DETERMINISTIC as DETERMINISTIC_PROPS
 from scipy import ndimage
 
 
@@ -79,7 +87,13 @@ def fit_object_to_true(raw: Image.Image, size: tuple[int, int],
         for k in range(1, n + 1):
             if sizes[k] < 16:
                 arr[lab == k, 3] = 0
-    return lock_palette(Image.fromarray(arr, "RGBA"))
+    return trim_to_content(lock_palette(Image.fromarray(arr, "RGBA")))
+
+
+def trim_to_content(img: Image.Image) -> Image.Image:
+    """Remove transparent padding so catalog bbox == collision bbox."""
+    bbox = img.getchannel("A").getbbox()
+    return img.crop(bbox) if bbox else img
 
 
 def preview_on_dark(img: Image.Image, scale: int = 4, pad: int = 8) -> Image.Image:
@@ -88,21 +102,112 @@ def preview_on_dark(img: Image.Image, scale: int = 4, pad: int = 8) -> Image.Ima
     return bg.resize((bg.width * scale, bg.height * scale), Image.NEAREST)
 
 
-def generate_object(client: GeminiImageClient, entry: dict, kind: str,
+def unify_light(img: Image.Image, band: int = 7, strength: float = 1.0) -> Image.Image:
+    """Deterministic top-left light pass for every medium/mega sprite.
+
+    The six pilot sprites were each lit differently (console right-biased,
+    reactor mirror-symmetric, hull sides equal).  This pass shifts the outer
+    bands along each pixel's own palette ramp: +strength on the left/top
+    silhouette, -strength on the right/bottom, with a 4x4 ordered dither at the
+    band edge so there is no hard line.  Near-black outline pixels (palette 0)
+    are left untouched so every cutout keeps its closed 1 px outline.
+    """
+    arr = np.array(img.convert("RGBA"))
+    rgb = arr[..., :3]
+    alpha = arr[..., 3]
+    h, w = alpha.shape
+    idx = nearest_palette_indices(rgb.reshape(-1, 3)).reshape(h, w)
+    lo = (idx // RAMP_SIZE) * RAMP_SIZE
+    hi = lo + RAMP_SIZE - 1
+    xs = np.arange(w, dtype=np.float64)[None, :]
+    ys = np.arange(h, dtype=np.float64)[:, None]
+    delta = np.zeros((h, w), dtype=np.float64)
+    if band > 0:
+        delta += strength * np.clip((band - xs) / band, 0.0, 1.0)
+        delta -= strength * np.clip((xs - (w - 1 - band)) / band, 0.0, 1.0)
+        delta += 0.6 * strength * np.clip((band // 2 - ys) / max(1, band // 2), 0.0, 1.0)
+        delta -= 0.6 * strength * np.clip((ys - (h - 1 - band // 2)) / max(1, band // 2),
+                                          0.0, 1.0)
+    bayer = np.array(BAYER4, dtype=np.float64) / 16.0
+    thr = np.tile(bayer, (h // 4 + 1, w // 4 + 1))[:h, :w]
+    steps = np.floor(delta) + ((delta - np.floor(delta)) > thr)
+    new = np.clip(idx + steps.astype(np.int64), lo, hi)
+    keep = (alpha == 0) | (idx == 0)
+    new = np.where(keep, idx, new)
+    rgb[alpha == 255] = PALETTE_RGB[new[alpha == 255]]
+    return Image.fromarray(arr, "RGBA")
+
+
+def _derive_sprite(base: Image.Image, entry: dict) -> Image.Image:
+    """Trim + top-left light unification. Sole sprite post-process."""
+    return unify_light(trim_to_content(base))
+
+
+def generate_object(client: GeminiImageClient | None, entry: dict, kind: str,
                     style_ref: Image.Image, outdir: Path, force: bool = False) -> dict:
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     sprite_path = outdir / "sprite.png"
     meta_path = outdir / "metadata.json"
+    src_path = outdir / "sprite_src.png"
+    # AI-authored base art is kept as `sprite_src.png`; every build re-derives
+    # `sprite.png` from it (light unification, palette lock) with no API call
+    # and without double-applying the light pass.
+    if src_path.exists() and not force:
+        base = Image.open(src_path).convert("RGBA")
+        sprite = _derive_sprite(base, entry)
+        sprite.save(sprite_path)
+        preview_on_dark(sprite, 4).save(outdir / "sprite_x4.png")
+        meta = {
+            "id": entry["id"],
+            "name": entry.get("name", entry["id"]),
+            "kind": kind,
+            "size": list(sprite.size),
+            "pivot": [sprite.width // 2, sprite.height],
+            "layer": "sorted_body",
+            "collision": True,
+            "catalog_size": list(entry["size"]),
+            "palette_violations": list(palette_violations(sprite)),
+            "source": {"model": "cached-base-art", "file": "sprite_src.png",
+                       "light": "top-left unified"},
+        }
+        meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False))
+        return meta
     if sprite_path.exists() and meta_path.exists() and not force:
-        return json.loads(meta_path.read_text())
+        # Deterministic props are cheap to redraw and must always be rebuilt;
+        # AI-authored sprites are cached unless a base-art file exists.
+        if entry["id"] not in DETERMINISTIC_PROPS:
+            return json.loads(meta_path.read_text())
 
+    if entry["id"] in DETERMINISTIC_PROPS:
+        sprite = _derive_sprite(DETERMINISTIC_PROPS[entry["id"]](), entry)
+        sprite.save(sprite_path)
+        preview_on_dark(sprite, 4).save(outdir / "sprite_x4.png")
+        meta = {
+            "id": entry["id"],
+            "name": entry.get("name", entry["id"]),
+            "kind": kind,
+            "size": list(sprite.size),
+            "pivot": [sprite.width // 2, sprite.height],
+            "layer": "sorted_body",
+            "collision": True,
+            "catalog_size": list(entry["size"]),
+            "palette_violations": list(palette_violations(sprite)),
+            "source": {"model": "deterministic", "prompt": "palette-drawn side-view prop",
+                       "light": "top-left unified"},
+        }
+        meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False))
+        return meta
+
+    client = client or GeminiImageClient()
     prompt = OBJECT_PROMPT.format(kind=kind, desc=entry["desc"])
     raw = client.generate_one(prompt, images=[style_ref], role="sunburst",
                               aspect="1:1", size="2K",
                               tag=f"ship-{kind}-{entry['id']}-v1")
     raw.save(outdir / "ai_raw.png")
-    sprite = fit_object_to_true(raw, tuple(entry["size"]))
+    fitted = trim_to_content(fit_object_to_true(raw, tuple(entry["size"])))
+    fitted.save(src_path)
+    sprite = _derive_sprite(fitted, entry)
     sprite.save(sprite_path)
     preview_on_dark(sprite, 4).save(outdir / "sprite_x4.png")
     meta = {
@@ -115,13 +220,14 @@ def generate_object(client: GeminiImageClient, entry: dict, kind: str,
         "collision": True,
         "catalog_size": list(entry["size"]),
         "palette_violations": list(palette_violations(sprite)),
-        "source": {"model": "gemini-nano-banana-2.1", "prompt": prompt},
+        "source": {"model": "gemini-nano-banana-2.1", "prompt": prompt,
+                   "light": "top-left unified"},
     }
     meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False))
     return meta
 
 
-def generate_catalog(client: GeminiImageClient, entries: list[dict], kind: str,
+def generate_catalog(client: GeminiImageClient | None, entries: list[dict], kind: str,
                      outdir: Path, force: bool = False) -> list[dict]:
     style_ref = load_style_reference()
     reports = []

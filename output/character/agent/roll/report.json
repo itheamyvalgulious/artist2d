@@ -1,0 +1,73 @@
+{
+  "action": "roll",
+  "frames": 8,
+  "locked_pixels": 0,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0,
+  "note": "coverage/mode 512->64 + iris preservation",
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/roll",
+  "source": {
+    "source": "procedural",
+    "context_action": "idle",
+    "board_fill": 0.82
+  },
+  "hires": {
+    "frames": 8,
+    "size": [
+      512,
+      512
+    ],
+    "frames_dir": "/dat/projects/artist2d/output/character/agent/roll/frames_hi",
+    "sheet": "sheet_hi.png",
+    "apng": "preview_hi.png",
+    "gif": "preview_hi.gif"
+  },
+  "lowres_preview": {
+    "apng": "preview.png",
+    "gif": "preview.gif",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "margin_ok": true,
+  "margin_attempts": 1,
+  "transitions": {
+    "start": {
+      "anchor": "idle:0",
+      "ok": true,
+      "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+      "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+    },
+    "end": {
+      "anchor": "idle:7",
+      "ok": true,
+      "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+      "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+    }
+  },
+  "verification": {
+    "action": "roll",
+    "static_pixel_checks": 0,
+    "static_diff_before": 0,
+    "static_diff_after": 0,
+    "feature_metric": "informational",
+    "tracked_features": 20,
+    "feature_audit": {
+      "features": 20,
+      "checked": 22,
+      "drift": 3,
+      "missing": 8,
+      "ignored": 76,
+      "static_checked": 22,
+      "static_drift": 3,
+      "static_missing": 8,
+      "moving_checked": 0,
+      "moving_drift": 0,
+      "moving_missing": 0
+    },
+    "feature_audit_affine": null
+  }
+}

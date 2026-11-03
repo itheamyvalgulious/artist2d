@@ -225,15 +225,25 @@ def lock_reference_panel(result: Image.Image, board: Image.Image) -> Image.Image
 def build_board(ref_canvas: Image.Image, frames: list[Image.Image],
                 fill: float = 0.9, ref_fill: float = 0.94,
                 safety_frame: bool = False,
-                safety_inset: int = 16, safety_width: int = 3) -> Image.Image:
+                safety_inset: int = 16, safety_width: int = 3,
+                shared_scale: bool = False) -> Image.Image:
     """3x3 board: top-left = master reference, the other 8 = mannequin poses.
 
     Gemini prefers square canvases, so the single-sheet composite from PLAN 1.2
     is laid out as a 3x3 grid (ref + 8 frames) inside a 2K magenta canvas.
     """
     board = Image.new("RGB", (BOARD, BOARD), (255, 0, 255))
-    panels = [fit_to_canvas(ref_canvas, CELL, fill=ref_fill)] + [
-        fit_to_canvas(f, CELL, fill=fill) for f in frames]
+    if shared_scale:
+        # 1:1 paste: the 3D render is already centred and grounded in its
+        # 512 frame.  Cropping each panel to its bbox and rescaling was what
+        # cut the shoot/roll feet at the cell bottom and changed the size
+        # from frame to frame.
+        panels = [ref_canvas.resize((CELL, CELL), Image.LANCZOS)] + [
+            f.resize((CELL, CELL), Image.LANCZOS) if f.size != (CELL, CELL)
+            else f for f in frames]
+    else:
+        panels = [fit_to_canvas(ref_canvas, CELL, fill=ref_fill)] + [
+            fit_to_canvas(f, CELL, fill=fill) for f in frames]
     for i, panel in enumerate(panels[:9]):
         row, col = divmod(i, 3)
         x = MARGIN + col * CELL
@@ -245,6 +255,27 @@ def build_board(ref_canvas: Image.Image, frames: list[Image.Image],
                          x + CELL - safety_inset - 1, y + CELL - safety_inset - 1],
                         outline=(0, 255, 255), width=safety_width)
     return board
+
+
+def fit_to_canvas_shared(raw: Image.Image, scale: float, canvas: int = 512,
+                         bottom: float = 0.985, margin: int = 6) -> Image.Image:
+    """Fit a frame with an externally chosen scale (shared by the whole action)."""
+    rgb = np.array(raw.convert("RGB"))
+    bg = estimate_background(raw)
+    mask = background_mask(rgb, bg)
+    ys, xs = np.nonzero(~mask)
+    if len(xs) == 0:
+        return Image.new("RGB", (canvas, canvas), (255, 0, 255))
+    crop = raw.convert("RGBA").crop((int(xs.min()), int(ys.min()),
+                                     int(xs.max()) + 1, int(ys.max()) + 1))
+    nw = max(1, int(round(crop.width * scale)))
+    nh = max(1, int(round(crop.height * scale)))
+    crop = crop.resize((nw, nh), Image.LANCZOS)
+    out = Image.new("RGB", (canvas, canvas), (255, 0, 255))
+    x = (canvas - nw) // 2
+    y = min(canvas - margin - nh, int(canvas * bottom) - nh)
+    out.paste(crop, (x, max(margin, y)), crop)
+    return out
 
 
 def build_silhouette_mask(board: Image.Image, dilate: int = 16) -> Image.Image:
@@ -312,7 +343,8 @@ def gear_rules(spec: CharacterSpec, action: str) -> str:
     pistol = gear.get("pistol", "hip")
     kat = {
         "hand": "the katana is drawn and held in the right hand",
-        "back": "the katana is sheathed diagonally on her back with the hilt above the right shoulder",
+        "back": "the katana is sheathed diagonally across her lower back with the hilt at her right "
+                "waist",
         "none": "no katana",
     }[katana]
     pis = {
@@ -354,6 +386,72 @@ def remaster_board(client: GeminiImageClient, board: Image.Image, spec: Characte
 
 def extract_panel(board: Image.Image, index: int) -> Image.Image:
     return board.crop(board_panel_box(index))
+
+
+def extract_panel_robust(board: Image.Image, index: int, pad: int = 220,
+                         canvas: int = 512, fill: float = 0.94) -> Image.Image:
+    """Extract one panel even when the generated figure drifted past its cell.
+
+    The edit model is not a hard-mask service; a raised hand or the katana can
+    cross the nominal 512-px cell.  Look into the magenta gutter around the
+    cell (the gutter is 256 px, so ``pad`` must stay below it), take the real
+    foreground bbox, and rebuild a clean 512 canvas without changing the pixel
+    scale unless the figure genuinely overflows.
+    """
+    x0, y0, x1, y1 = board_panel_box(index)
+    ex0, ey0 = max(0, x0 - pad), max(0, y0 - pad)
+    ex1, ey1 = min(board.width, x1 + pad), min(board.height, y1 + pad)
+    crop = board.crop((ex0, ey0, ex1, ey1)).convert("RGB")
+    rgb = np.array(crop)
+    bg = estimate_background(crop)
+    fg = ~background_mask_all(rgb, bg)
+    # The model sometimes leaves a neighbouring panel's boot or head inside
+    # this cell.  Keep the main body and only the components close enough to
+    # be a real detached weapon / hair lock; everything else is panel bleed.
+    lab, n = ndimage.label(fg)
+    if n > 1:
+        sizes = np.bincount(lab.ravel())
+        sizes[0] = 0
+        main = int(np.argmax(sizes))
+        main_mask = lab == main
+        # Keep detached boots/hair locks that the AI separated from the body;
+        # the neighbouring-panel fragment is much farther away and is dropped.
+        near = ndimage.binary_dilation(main_mask, iterations=40)
+        my = np.nonzero(main_mask)[0]
+        main_top = int(my.min()) if len(my) else 0
+        keep = main_mask.copy()
+        for k in range(1, n + 1):
+            if k == main:
+                continue
+            comp = lab == k
+            if not (comp & near).any():
+                continue
+            # A neighbouring panel's boots/hair land *above* the head; never
+            # keep a detached component whose bbox starts above the main body.
+            cy = np.nonzero(comp)[0]
+            if len(cy) and int(cy.min()) < main_top - 4:
+                continue
+            keep |= comp
+        fg = keep
+    ys, xs = np.nonzero(fg)
+    out = Image.new("RGB", (canvas, canvas), (255, 0, 255))
+    if len(xs) == 0:
+        return out
+    bx0, bx1 = int(xs.min()), int(xs.max()) + 1
+    by0, by1 = int(ys.min()), int(ys.max()) + 1
+    content = crop.crop((bx0, by0, bx1, by1)).convert("RGBA")
+    alpha = (fg[by0:by1, bx0:bx1].astype(np.uint8) * 255)
+    content.putalpha(Image.fromarray(alpha, "L"))
+    avail = int(canvas * fill)
+    if content.width > avail or content.height > avail:
+        scale = min(avail / content.width, avail / content.height)
+        content = content.resize((max(1, int(round(content.width * scale))),
+                                  max(1, int(round(content.height * scale)))),
+                                 Image.LANCZOS)
+    px = (canvas - content.width) // 2
+    py = int(canvas * 0.985) - content.height
+    out.paste(content, (px, max(0, py)), content)
+    return out
 
 
 def extract_action_panel(board: Image.Image, index: int, inset: int = 19) -> Image.Image:
@@ -440,8 +538,11 @@ def panels_to_sprites(panels: list[Image.Image], canvas: int = 512,
     heights = [m["h"] for m in metrics if m["h"] > 0]
     widths = [m["box"][2] - m["box"][0] for m in metrics if m["h"] > 0]
     h_med = float(np.median(heights)) if heights else 1.0
-    w_max = float(max(widths)) if widths else 1.0
-    scale = min(canvas * fill / max(1.0, h_med), canvas * fill / max(1.0, w_max))
+    # Scale from the first (standing transition) pose, not from the median of
+    # the action: a tucked/crouched frame must stay small relative to the
+    # standing character instead of being blown up to the same height.
+    ref_h = float(metrics[0]["h"]) if metrics and metrics[0]["h"] > 0 else h_med
+    scale = canvas * fill / max(1.0, ref_h)
     cx_med = float(np.median([m["lower_cx"] for m in metrics])) if metrics else 0.0
     # One clip-level mannequin→sprite scale.  A per-frame scale (the AI's
     # lower-body width changes with the redraw) made the truth warp breathe by
@@ -509,16 +610,38 @@ def panels_to_hires(panels: list[Image.Image], mannequin_panels: list[Image.Imag
     heights = [m["h"] for m in metrics if m["h"] > 0]
     widths = [m["box"][2] - m["box"][0] for m in metrics if m["h"] > 0]
     h_med = float(np.median(heights)) if heights else 1.0
-    w_max = float(max(widths)) if widths else 1.0
-    scale = min(canvas * fill / max(1.0, h_med), canvas * fill / max(1.0, w_max))
+    # Scale from the first (standing transition) pose, not from the median of
+    # the action: a tucked/crouched frame must stay small relative to the
+    # standing character instead of being blown up to the same height.
+    ref_h = float(metrics[0]["h"]) if metrics and metrics[0]["h"] > 0 else h_med
+    scale = canvas * fill / max(1.0, ref_h)
+    # The edit model shrinks a pose when a raised/horizontal weapon needs room.
+    # The mannequin's lower body is weapon-free, so the art-to-mannequin
+    # lower-body ratio must be constant; correct each frame to its median.
+    body_fix = [1.0] * len(metrics)
+    if mannequin_panels is not None and len(mannequin_panels) == len(metrics):
+        ratios = []
+        for m, mp in zip(metrics, mannequin_panels):
+            if m["h"] == 0:
+                ratios.append(None)
+                continue
+            mm = panel_metrics(mp)
+            ratios.append(float(m["lower_w"] / max(1.0, mm["lower_w"])))
+        live = [r for r in ratios if r]
+        if live:
+            target = float(np.median(live))
+            for i, r in enumerate(ratios):
+                if r:
+                    body_fix[i] = float(np.clip(target / r, 0.7, 1.45))
     cx_med = float(np.median([m["lower_cx"] for m in metrics])) if metrics else 0.0
     out: list[Image.Image] = []
-    for crop, m in zip([m["crop"] for m in metrics], metrics):
+    for i, (crop, m) in enumerate(zip([m["crop"] for m in metrics], metrics)):
         if m["h"] == 0:
             out.append(Image.new("RGBA", (canvas, canvas), (0, 0, 0, 0)))
             continue
-        nw = max(1, int(round(crop.width * scale)))
-        nh = max(1, int(round(crop.height * scale)))
+        si = scale
+        nw = max(1, int(round(crop.width * si)))
+        nh = max(1, int(round(crop.height * si)))
         resized = crop.resize((nw, nh), Image.LANCZOS)
         big = Image.new("RGB", (canvas, canvas), (255, 0, 255))
         px = int(round(canvas / 2 - cx_med * scale))

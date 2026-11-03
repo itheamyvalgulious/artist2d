@@ -1,0 +1,39 @@
+{
+  "action": "slash3",
+  "frames": 8,
+  "locked_pixels": 0,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0,
+  "note": "coverage/mode 512->64 + iris preservation",
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/slash3",
+  "source": {
+    "clip": "1H_Melee_Attack_Slice_Diagonal",
+    "base_clip": "Jump_Idle",
+    "upper_clip": "1H_Melee_Attack_Slice_Diagonal",
+    "upper_start": 0.32,
+    "upper_end": 0.52
+  },
+  "hires": {
+    "frames": 8,
+    "size": [
+      512,
+      512
+    ],
+    "frames_dir": "/dat/projects/artist2d/output/character/agent/slash3/frames_hi",
+    "sheet": "sheet_hi.png",
+    "apng": "preview_hi.png",
+    "gif": "preview_hi.gif"
+  },
+  "lowres_preview": {
+    "apng": "preview.png",
+    "gif": "preview.gif",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "margin_ok": true,
+  "margin_attempts": 1
+}

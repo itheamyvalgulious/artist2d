@@ -1,0 +1,592 @@
+{
+  "character": "agent",
+  "actions": {
+    "idle": {
+      "action": "idle",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/idle",
+      "source": {
+        "source": "procedural"
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/idle/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "run": {
+      "action": "run",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/run",
+      "source": {
+        "clip": "Running_B",
+        "context_action": "idle"
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/run/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "jump": {
+      "action": "jump",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/jump",
+      "source": {
+        "clip": "Jump_Start",
+        "start": 0.45,
+        "end": 1.0
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/jump/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "in_air": {
+      "action": "in_air",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/in_air",
+      "source": {
+        "clip": "Jump_Idle"
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/in_air/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "shoot1": {
+      "action": "shoot1",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/shoot1",
+      "source": {
+        "clip": "1H_Ranged_Shoot",
+        "base_clip": "Idle",
+        "upper_clip": "1H_Ranged_Shoot",
+        "upper_start": 0.08,
+        "upper_end": 0.4
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/shoot1/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "shoot2": {
+      "action": "shoot2",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/shoot2",
+      "source": {
+        "clip": "1H_Ranged_Shoot",
+        "base_clip": "Running_B",
+        "upper_clip": "1H_Ranged_Shoot",
+        "upper_start": 0.08,
+        "upper_end": 0.4,
+        "board_fill": 0.86
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/shoot2/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "shoot3": {
+      "action": "shoot3",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/shoot3",
+      "source": {
+        "clip": "1H_Ranged_Shoot",
+        "base_clip": "Jump_Idle",
+        "upper_clip": "1H_Ranged_Shoot",
+        "upper_start": 0.08,
+        "upper_end": 0.4
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/shoot3/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "slash1": {
+      "action": "slash1",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/slash1",
+      "source": {
+        "clip": "1H_Melee_Attack_Slice_Diagonal",
+        "start": 0.32,
+        "end": 0.52
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/slash1/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "slash2": {
+      "action": "slash2",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/slash2",
+      "source": {
+        "clip": "1H_Melee_Attack_Slice_Diagonal",
+        "base_clip": "Running_B",
+        "upper_clip": "1H_Melee_Attack_Slice_Diagonal",
+        "upper_start": 0.32,
+        "upper_end": 0.52,
+        "board_fill": 0.86
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          640,
+          640
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/slash2/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "slash3": {
+      "action": "slash3",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/slash3",
+      "source": {
+        "clip": "1H_Melee_Attack_Slice_Diagonal",
+        "base_clip": "Jump_Idle",
+        "upper_clip": "1H_Melee_Attack_Slice_Diagonal",
+        "upper_start": 0.32,
+        "upper_end": 0.52
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/slash3/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "block": {
+      "action": "block",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/block",
+      "source": {
+        "clip": "Blocking"
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/block/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    },
+    "roll": {
+      "action": "roll",
+      "frames": 8,
+      "locked_pixels": 0,
+      "features_repaired": 0,
+      "static_features": false,
+      "static_ratio": 0.0,
+      "note": "coverage/mode 512->64 + iris preservation",
+      "sheets": "sheet.png",
+      "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/roll",
+      "source": {
+        "source": "procedural",
+        "context_action": "idle",
+        "board_fill": 0.82
+      },
+      "hires": {
+        "frames": 8,
+        "size": [
+          512,
+          512
+        ],
+        "frames_dir": "/dat/projects/artist2d/output/character/agent/roll/frames_hi",
+        "sheet": "sheet_hi.png",
+        "apng": "preview_hi.png",
+        "gif": "preview_hi.gif"
+      },
+      "lowres_preview": {
+        "apng": "preview.png",
+        "gif": "preview.gif",
+        "size": [
+          256,
+          256
+        ]
+      },
+      "margin_ok": true,
+      "margin_attempts": 1
+    }
+  },
+  "transitions": {
+    "in_air": {
+      "start": {
+        "anchor": "jump:7",
+        "ok": true,
+        "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+        "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+      },
+      "end": null
+    },
+    "shoot1": {
+      "start": {
+        "anchor": "idle:0",
+        "ok": true,
+        "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+        "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+      },
+      "end": {
+        "anchor": "idle:7",
+        "ok": true,
+        "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+        "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+      }
+    },
+    "shoot2": {
+      "start": {
+        "anchor": "run:0",
+        "ok": true,
+        "sha256": "efd4229291b63238901987001d8d372189a15482127b3b0f58c97c4b594a6965",
+        "hires_sha256": "c1f4b0c8318c525eba0a375a256871ecb359340202a7efe8bffbefbf5688bb67"
+      },
+      "end": {
+        "anchor": "run:7",
+        "ok": true,
+        "sha256": "b89168692c381337c8da6db354b30f7eba7dc8e19e0b5e38392df97d15960c0e",
+        "hires_sha256": "ecb1c604cedb435a13f6337a0e573e2942dfb4a22450387697d2871b829b6982"
+      }
+    },
+    "shoot3": {
+      "start": {
+        "anchor": "in_air:0",
+        "ok": true,
+        "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+        "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+      },
+      "end": {
+        "anchor": "in_air:7",
+        "ok": true,
+        "sha256": "c0f3fd7895c552f8fcaed78d43b29561e47baee0d36958a61b90aea0ab6fd308",
+        "hires_sha256": "87dca436caae7af9bcc88cb3a6f621b5fccbd2796ca0c950c5e9fbe7136de861"
+      }
+    },
+    "slash1": {
+      "start": {
+        "anchor": "idle:0",
+        "ok": true,
+        "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+        "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+      },
+      "end": {
+        "anchor": "idle:7",
+        "ok": true,
+        "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+        "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+      }
+    },
+    "slash2": {
+      "start": {
+        "anchor": "run:0",
+        "ok": true,
+        "sha256": "efd4229291b63238901987001d8d372189a15482127b3b0f58c97c4b594a6965",
+        "hires_sha256": "a88b851161f2aea034d7fe11c0994d042069a644c94665f56e0763c50717e2e0"
+      },
+      "end": {
+        "anchor": "run:7",
+        "ok": true,
+        "sha256": "b89168692c381337c8da6db354b30f7eba7dc8e19e0b5e38392df97d15960c0e",
+        "hires_sha256": "43e10934cbfbf116966e0f3866ed3ac37de4ad14d288906f9e4aaaa0147035bf"
+      }
+    },
+    "slash3": {
+      "start": {
+        "anchor": "in_air:0",
+        "ok": true,
+        "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+        "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+      },
+      "end": {
+        "anchor": "in_air:7",
+        "ok": true,
+        "sha256": "c0f3fd7895c552f8fcaed78d43b29561e47baee0d36958a61b90aea0ab6fd308",
+        "hires_sha256": "87dca436caae7af9bcc88cb3a6f621b5fccbd2796ca0c950c5e9fbe7136de861"
+      }
+    },
+    "block": {
+      "start": {
+        "anchor": "idle:0",
+        "ok": true,
+        "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+        "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+      },
+      "end": {
+        "anchor": "idle:7",
+        "ok": true,
+        "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+        "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+      }
+    },
+    "roll": {
+      "start": {
+        "anchor": "idle:0",
+        "ok": true,
+        "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+        "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+      },
+      "end": {
+        "anchor": "idle:7",
+        "ok": true,
+        "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+        "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+      }
+    }
+  },
+  "design_sheet": {
+    "ok": true,
+    "sheet": "design_sheet.png",
+    "preview": "design_sheet_x2.png",
+    "parts": {
+      "katana": "parts/katana.png",
+      "scabbard": "parts/scabbard.png",
+      "pistol": "parts/pistol.png"
+    },
+    "component_count": 3,
+    "palette_violations": [
+      0,
+      0
+    ]
+  }
+}

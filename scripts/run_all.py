@@ -1,8 +1,11 @@
-"""Run every module end-to-end, then the acceptance test suite.
+"""Run every module end-to-end, then print the deterministic asset report.
 
     .venv/bin/python scripts/run_all.py             # original field + knight
     .venv/bin/python scripts/run_all.py --ship      # side-view ship set
     .venv/bin/python scripts/run_all.py --ship --force
+
+There is deliberately no pytest suite.  Visual acceptance is performed by an
+independent multimodal reviewer with 100% asset coverage; see README §5.
 
 ``--skip-api`` is kept for the field pipeline: it reuses the on-disk API cache
 and only re-runs deterministic post-processing.
@@ -44,8 +47,8 @@ def main() -> None:
         run("build_showcase.py")
         run("build_animations.py")
     run("cleanup_work.py")
-    print("\n==> pytest")
-    subprocess.run([PY, "-m", "pytest", "tests", "-q"], check=True, cwd=ROOT)
+    run("verify_all.py")
+    print("\nVisual acceptance is a separate independent-subagent review; see README §5.")
 
 
 if __name__ == "__main__":

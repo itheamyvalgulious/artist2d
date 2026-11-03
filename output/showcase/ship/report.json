@@ -5,9 +5,11 @@
     640
   ],
   "scene": "scene.png",
+  "scene_focus": "scene_focus_x4.png (4x crop around the agent/door/server for scale review)",
+  "scene_shadows": "scene_shadows_x6.png (6x plate of the dais and the reactor pad contact shadows)",
   "palette_violations": [
     0,
     0
   ],
-  "character": "agent idle/shoot2"
+  "character": "agent idle frame 00 (single placement)"
 }

@@ -79,9 +79,13 @@
     "deck_fill",
     "deck_left",
     "deck_right",
+    "deck_step",
+    "deck_step_left",
+    "deck_step_right",
     "deck_top",
-    "deck_top_left",
     "deck_top_right",
+    "door",
+    "door_top",
     "grate_fill",
     "grate_top",
     "hazard",
@@ -94,7 +98,6 @@
     "wall_flat_light",
     "wall_flat_violet",
     "wall_light",
-    "wall_plain",
     "wall_violet",
     "window"
   ],
@@ -111,10 +114,12 @@
       0
     ]
   },
-  "medium_catalog_size": 10,
+  "medium_generated_count": 3,
   "medium_generated": [
     "console_bank",
     "cargo_stack",
     "server_rack"
-  ]
+  ],
+  "medium_catalog_total": 10,
+  "tile_count": 25
 }

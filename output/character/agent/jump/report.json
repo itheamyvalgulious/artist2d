@@ -1,0 +1,37 @@
+{
+  "action": "jump",
+  "frames": 8,
+  "locked_pixels": 0,
+  "features_repaired": 0,
+  "static_features": false,
+  "static_ratio": 0.0,
+  "note": "coverage/mode 512->64 + iris preservation",
+  "sheets": "sheet.png",
+  "mannequin": "/dat/projects/artist2d/output/character/agent/mannequin/jump",
+  "source": {
+    "clip": "Jump_Start",
+    "start": 0.45,
+    "end": 1.0
+  },
+  "hires": {
+    "frames": 8,
+    "size": [
+      512,
+      512
+    ],
+    "frames_dir": "/dat/projects/artist2d/output/character/agent/jump/frames_hi",
+    "sheet": "sheet_hi.png",
+    "apng": "preview_hi.png",
+    "gif": "preview_hi.gif"
+  },
+  "lowres_preview": {
+    "apng": "preview.png",
+    "gif": "preview.gif",
+    "size": [
+      256,
+      256
+    ]
+  },
+  "margin_ok": true,
+  "margin_attempts": 1
+}

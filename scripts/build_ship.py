@@ -29,7 +29,7 @@ from config.ship_config import (  # noqa: E402
 )
 from core.api_client import GeminiImageClient  # noqa: E402
 from core.palette_quantizer import palette_violations  # noqa: E402
-from environment.ship_assembly import compose  # noqa: E402
+from environment.ship_assembly import main as assemble_ship  # noqa: E402
 from environment.ship_objects import contact_sheet, generate_catalog  # noqa: E402
 from environment.ship_tiles import build_tileset, generate_materials  # noqa: E402
 from PIL import Image  # noqa: E402
@@ -56,7 +56,9 @@ def main() -> None:
     mg = mega_dir("ship")
     env.mkdir(parents=True, exist_ok=True)
     mg.mkdir(parents=True, exist_ok=True)
-    client = GeminiImageClient()
+    # The client is constructed lazily: a plain `python scripts/build_ship.py`
+    # rebuilds every deterministic asset with zero API calls.
+    client = GeminiImageClient() if args.force else None
 
     print("1/4 ship materials + tileset")
     materials, mat_report = generate_materials(client, outdir=env, force=args.force)
@@ -73,15 +75,10 @@ def main() -> None:
     contact_sheet(mega, mg / "elements", "catalog_preview.png", 2)
 
     print("4/4 assembly + showcase")
-    mega_img = compose(include_character=False, env=env, mg=mg)
-    mega_img.save(mg / "ship_mega_1x.png")
-    mega_img.resize((mega_img.width * 2, mega_img.height * 2), Image.NEAREST).save(
-        mg / "ship_mega_preview.png")
-    scene = compose(include_character=True, env=env, mg=mg)
+    assemble_ship()
     show = showcase_dir("ship")
-    show.mkdir(parents=True, exist_ok=True)
-    scene.save(show / "scene_1x.png")
-    scene.resize((scene.width * 2, scene.height * 2), Image.NEAREST).save(show / "scene.png")
+    mega_img = Image.open(mg / "ship_mega_1x.png")
+    scene = Image.open(show / "scene_1x.png")
 
     env_rep = {
         "set": "ship",
@@ -94,15 +91,18 @@ def main() -> None:
             "tileset": list(palette_violations(Image.open(env / "tileset.png"))),
             "sample": list(palette_violations(Image.open(env / "tileset_sample.png"))),
         },
-        "medium_catalog_size": len(MEDIUM_STRUCTURES),
+        "medium_generated_count": len(med_report),
         "medium_generated": [r["id"] for r in med_report],
+        "medium_catalog_total": len(MEDIUM_STRUCTURES),
+        "tile_count": len(tile_report["tiles"]),
     }
     (env / "report.json").write_text(json.dumps(env_rep, indent=2))
 
     meg_rep = {
         "set": "ship",
-        "mega_catalog_size": len(MEGA_ELEMENTS),
+        "mega_generated_count": len(meg_report),
         "mega_generated": [r["id"] for r in meg_report],
+        "mega_catalog_total": len(MEGA_ELEMENTS),
         "assembly": {
             "size": list(mega_img.size),
             "file": "ship_mega_1x.png",
@@ -116,8 +116,10 @@ def main() -> None:
         "set": "ship",
         "scene_1x": list(scene.size),
         "scene": "scene.png",
+        "scene_focus": "scene_focus_x4.png (4x crop around the agent/door/server for scale review)",
+        "scene_shadows": "scene_shadows_x6.png (6x plate of the dais and the reactor pad contact shadows)",
         "palette_violations": list(palette_violations(scene)),
-        "character": "agent idle/shoot2",
+        "character": "agent idle frame 00 (single placement)",
     }
     (show / "report.json").write_text(json.dumps(show_rep, indent=2))
 
@@ -132,7 +134,7 @@ def main() -> None:
         "- Showcase: `output/showcase/ship/`",
         "- The original top-down terrain stays in `environment/field`, `mega/field`, `showcase/field`.",
         "",
-        "## Tile materials (2x2 board, deterministic toroidal seam median)",
+        "## Material board (2x2, deterministic toroidal seam median)",
         "",
         "| material | KS statistic | p (full) | p (3x3) | pass | phase |",
         "|---|---:|---:|---:|---|---|",
@@ -145,7 +147,9 @@ def main() -> None:
         "",
         f"Tile atlas: **{len(tile_report['tiles'])}** tiles (`tileset.png`), "
         "including deck/platform edges, wall/light/violet variants, ceiling, grate, "
-        "pipes, vent, hazard and starfield window.",
+        "pipes, vent, hazard and starfield window.  Only these 25 derived structural "
+        "tiles are shipped in `tiles/`; the board's four materials are working files "
+        "(the `conduit` quadrant informs the pipe family and is not a shipped tile).",
         "",
         "## Medium structures (pilot 3 / 10)",
         "",
@@ -184,6 +188,12 @@ def main() -> None:
         "- `mega/ship/elements/catalog_preview.png`",
         "- `mega/ship/ship_mega_preview.png`",
         "- `showcase/ship/scene.png`",
+        "- `showcase/ship/scene_focus_x4.png` (4x crop of the agent / door / server)",
+        "- `showcase/ship/scene_shadows_x6.png` (6x plate: dais + reactor pad contact shadows)",
+        "",
+        "> `scripts/build_ship.py` with no flags rebuilds every tile and every",
+        "> deterministic prop from code and re-derives the four AI-authored sprites",
+        "> from their cached `sprite_src.png` base art, with zero API calls.",
         "",
         "> Only the three pilot structures/elements were generated. The other 7",
         "> medium types and 17 mega types are already defined in",

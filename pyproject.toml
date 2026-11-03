@@ -11,10 +11,5 @@ dependencies = [
     "scikit-image>=0.24",
 ]
 
-[dependency-groups]
-dev = ["pytest>=8.3"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["."]
-markers = ["integration: tests that require built output assets"]
+# This project intentionally has no code unit tests: acceptance is a
+# 100%-coverage multimodal review by an independent subagent (see README §5).

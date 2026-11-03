@@ -1,0 +1,91 @@
+{
+  "spec": {
+    "name": "agent",
+    "description": "a female cyberpunk special agent with long flowing silver hair and violet eyes, wearing a fitted dark-navy cropped top with short sleeves, separate dark detached forearm sleeves with cyan technical trim, short navy shorts, and black combat boots. She carries a katana (sheathed diagonally across her back with the hilt above her right shoulder, or drawn in her right hand) and a compact dark pistol (holstered at her right hip, or drawn in her hand)",
+    "style": "TRUE low-resolution pixel art: large crisp square pixel clusters, 1px near-black outline, 64 colour limited palette, flat three-tone shading, cool gunmetal / navy / silver / cyan / violet palette, zero anti-aliasing, zero blur, no gradients",
+    "ref_extra": "long silver hair reaching mid-back, visible violet eyes, short-sleeve top plus detached forearm sleeves, short shorts, black boots, a katana in a dark scabbard on her back, a compact pistol in a hip holster; in the reference panel the katana is drawn and the pistol is displayed, both fully visible, so the model knows their exact length and shape; bare legs use warm skin tones with warm brown shadows, never purple legs; violet appears only in the eyes and tiny accents, cyan only on the sleeve trim and pistol sight",
+    "ref_pose": "Orthographic PURE SIDE PROFILE from the character's RIGHT side (90 degrees, no front foreshortening), facing screen-right. She holds the full-length katana DRAWN in her right hand, blade angled up and fully visible at full length; the empty dark scabbard is on her back. The compact pistol is displayed in her left hand, raised slightly forward of her far hip so it is fully visible and does not overlap the katana. The katana blade is much longer than the hilt and has a clear guard; the pistol has a clear barrel, grip and trigger guard. Both weapons are complete, no extra weapons, no shield. Neutral standing A-pose with the weapons displayed, both feet visible, entire body and both weapons inside the frame with a wide margin.",
+    "board_extra": "The character is a woman, not a man and not the knight: long flowing SILVER hair (never a helmet, never short), VIOLET eyes, bare legs between short shorts and black boots, short sleeves on the upper arms and separate detached sleeves on the forearms. Keep the exact same face, hair length, outfit colours and body proportions as the top-left reference in every panel. BODY CONSISTENCY: keep the same slim body in every action: same head size, same waist, same narrow thigh and calf thickness as the reference; never thicken or muscularize the legs in running, slashing or shooting poses. The katana scabbard is dark with a silver hilt; the pistol is compact and dark with a small cyan sight. The top-left reference panel shows the exact full-length katana blade, guard, handle and scabbard and the exact pistol; use those shapes in every panel and never shorten the katana into a dagger. Never duplicate a weapon, never replace the katana with a greatsword, and never add a shield.",
+    "action_extra": {
+      "idle": " Standing relaxed idle, weight on one leg, both hands empty, katana sheathed on the back and pistol holstered at the hip. All eight frames are subtle breathing motion; the silver hair and the stowed weapons stay attached to the body.",
+      "run": " A clean side-view run cycle facing screen-right: alternating strides, knees driving, arms pumping, silver hair streaming behind. The legs must stay as slim as the idle reference; do not add thigh or calf muscle. Both weapons are stowed: katana on the back, pistol in the hip holster. Never put a weapon in her hands.",
+      "jump": " The take-off / crouch phase of a jump: knees bend, body compresses, arms swing back, then the feet leave the ground. Katana on the back and pistol holstered.",
+      "in_air": " Airborne: both feet clearly off the ground, knees tucked, hair and clothes lifted. Katana on the back and pistol holstered. The first frame must match the last frame of the jump clip exactly.",
+      "shoot1": " Standing pistol shot: right arm extended forward at shoulder height, pistol aimed screen-right, left hand steadying the grip or held close, torso slightly turned into the shot. The katana stays sheathed on her back. Muzzle flash may appear as a small cyan-white star but no bullet, beam or shell casings.",
+      "shoot2": " Run-and-gun pistol shot: legs stay in a running stride, upper body aims the pistol forward to screen-right at shoulder height, hair streaming. The katana stays sheathed on her back. The first and last frames must match the run cycle poses.",
+      "shoot3": " Airborne pistol shot: knees tucked, both feet off the ground, right arm aims the pistol forward to screen-right, hair lifted. Katana stays sheathed on her back.",
+      "slash1": " Standing katana slash: the katana is drawn in the right hand and sweeps in a fast forward diagonal downward cut, one hand on the hilt, torso twisting into the cut, silver hair following. The pistol stays holstered at the hip. The blade must be complete and at full length in every frame. BLADE ARC (screen space, character faces screen-right): panel 1 the blade is raised high in front of the chest; panels 2-3 the blade sweeps forward toward screen-right to full extension at chest height; panels 4-5 the blade continues forward and down to a low finish in front of her; panel 6 the blade is low near the front knee; panels 7-8 recover toward guard/run. Every panel must show a different blade angle and the tip must trace a forward-and-down arc, never swing backwards behind her body. FRAMING: draw the character at about 65% of the panel height, centred, with a wide magenta margin on all four sides. The full katana blade / pistol muzzle must remain inside the panel and must never touch or cross the panel edge.",
+      "slash2": " Running katana slash: legs stay in a running stride while the drawn katana sweeps in a diagonal cut, hair and sleeves streaming. The pistol stays holstered. The first and last frames must match the run cycle poses; the blade must be complete. BLADE ARC (screen space, character faces screen-right): panel 1 the blade is raised high in front of the chest; panels 2-3 the blade sweeps forward toward screen-right to full extension at chest height; panels 4-5 the blade continues forward and down to a low finish in front of her; panel 6 the blade is low near the front knee; panels 7-8 recover toward guard/run. Every panel must show a different blade angle and the tip must trace a forward-and-down arc, never swing backwards behind her body. FRAMING: draw the character at about 65% of the panel height, centred, with a wide magenta margin on all four sides. The full katana blade / pistol muzzle must remain inside the panel and must never touch or cross the panel edge.",
+      "slash3": " Airborne katana slash: knees tucked, both feet off the ground, drawn katana sweeping in a diagonal cut, hair lifted. The pistol stays holstered; the blade is complete. BLADE ARC (screen space, character faces screen-right): panel 1 the blade is raised high in front of the chest; panels 2-3 the blade sweeps forward toward screen-right to full extension at chest height; panels 4-5 the blade continues forward and down to a low finish in front of her; panel 6 the blade is low near the front knee; panels 7-8 recover toward guard/run. Every panel must show a different blade angle and the tip must trace a forward-and-down arc, never swing backwards behind her body. FRAMING: draw the character at about 65% of the panel height, centred, with a wide magenta margin on all four sides. The full katana blade / pistol muzzle must remain inside the panel and must never touch or cross the panel edge.",
+      "block": " Katana parry / guard: the katana is drawn and held with both hands in front of the chest, blade angled up and across the body to deflect an incoming attack. Knees are slightly bent, weight low, eyes forward over the blade. This is a SWORD block, not a shield block: no shield, and the pistol stays holstered. The blade is complete.",
+      "roll": " Forward dodge roll: action panels 1 and 8 are the standing transition poses; panels 2-7 show the body tucked and rotating forward through a full 360 degrees (crouch, dive, upside-down, landing crouch). Keep knees and elbows tucked close to the body, head down, silver hair and the stowed katana/pistol following the rotation. Do not turn the body into a featureless sphere: it must read as a compact human body rolling. Draw the tumbling body at about 55% of the panel height, centred, with a wide magenta margin on all sides; the entire body must stay inside the panel and never touch or cross an edge."
+    },
+    "gear": {
+      "idle": {
+        "katana": "back",
+        "pistol": "hip"
+      },
+      "run": {
+        "katana": "back",
+        "pistol": "hip"
+      },
+      "jump": {
+        "katana": "back",
+        "pistol": "hip"
+      },
+      "in_air": {
+        "katana": "back",
+        "pistol": "hip"
+      },
+      "shoot1": {
+        "katana": "back",
+        "pistol": "hand"
+      },
+      "shoot2": {
+        "katana": "back",
+        "pistol": "hand"
+      },
+      "shoot3": {
+        "katana": "back",
+        "pistol": "hand"
+      },
+      "slash1": {
+        "katana": "hand",
+        "pistol": "hip"
+      },
+      "slash2": {
+        "katana": "hand",
+        "pistol": "hip"
+      },
+      "slash3": {
+        "katana": "hand",
+        "pistol": "hip"
+      },
+      "block": {
+        "katana": "hand",
+        "pistol": "hip"
+      },
+      "roll": {
+        "katana": "back",
+        "pistol": "hip"
+      }
+    },
+    "params": {
+      "head_scale": 0.98,
+      "torso_len": 0.95,
+      "limb_len": 1.0,
+      "shoulder_width": 0.82
+    },
+    "camera": [
+      -70.0,
+      37.0,
+      0.0
+    ],
+    "camera_text": "pure side profile (90 degrees) from the character's RIGHT side, facing screen-right, with no front foreshortening"
+  },
+  "prompt": "Full-body 2D pixel art character sprite of a female cyberpunk special agent with long flowing silver hair and violet eyes, wearing a fitted dark-navy cropped top with short sleeves, separate dark detached forearm sleeves with cyan technical trim, short navy shorts, and black combat boots. She carries a katana (sheathed diagonally across her back with the hilt above her right shoulder, or drawn in her right hand) and a compact dark pistol (holstered at her right hip, or drawn in her hand). Orthographic PURE SIDE PROFILE from the character's RIGHT side (90 degrees, no front foreshortening), facing screen-right. She holds the full-length katana DRAWN in her right hand, blade angled up and fully visible at full length; the empty dark scabbard is on her back. The compact pistol is displayed in her left hand, raised slightly forward of her far hip so it is fully visible and does not overlap the katana. The katana blade is much longer than the hilt and has a clear guard; the pistol has a clear barrel, grip and trigger guard. Both weapons are complete, no extra weapons, no shield. Neutral standing A-pose with the weapons displayed, both feet visible, entire body and both weapons inside the frame with a wide margin. long silver hair reaching mid-back, visible violet eyes, short-sleeve top plus detached forearm sleeves, short shorts, black boots, a katana in a dark scabbard on her back, a compact pistol in a hip holster; in the reference panel the katana is drawn and the pistol is displayed, both fully visible, so the model knows their exact length and shape; bare legs use warm skin tones with warm brown shadows, never purple legs; violet appears only in the eyes and tiny accents, cyan only on the sleeve trim and pistol sight. TRUE low-resolution pixel art: large crisp square pixel clusters, 1px near-black outline, 64 colour limited palette, flat three-tone shading, cool gunmetal / navy / silver / cyan / violet palette, zero anti-aliasing, zero blur, no gradients. Background: solid pure magenta #FF00FF, completely flat and empty. No grid lines, no checkerboard, no ground, no cast shadow, no text, no border, no UI.",
+  "violations": [
+    0,
+    0
+  ]
+}

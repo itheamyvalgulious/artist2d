@@ -1,0 +1,123 @@
+{
+  "in_air": {
+    "start": {
+      "anchor": "jump:7",
+      "ok": true,
+      "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+      "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+    },
+    "end": null
+  },
+  "shoot1": {
+    "start": {
+      "anchor": "idle:0",
+      "ok": true,
+      "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+      "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+    },
+    "end": {
+      "anchor": "idle:7",
+      "ok": true,
+      "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+      "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+    }
+  },
+  "shoot2": {
+    "start": {
+      "anchor": "run:0",
+      "ok": true,
+      "sha256": "efd4229291b63238901987001d8d372189a15482127b3b0f58c97c4b594a6965",
+      "hires_sha256": "c1f4b0c8318c525eba0a375a256871ecb359340202a7efe8bffbefbf5688bb67"
+    },
+    "end": {
+      "anchor": "run:7",
+      "ok": true,
+      "sha256": "b89168692c381337c8da6db354b30f7eba7dc8e19e0b5e38392df97d15960c0e",
+      "hires_sha256": "ecb1c604cedb435a13f6337a0e573e2942dfb4a22450387697d2871b829b6982"
+    }
+  },
+  "shoot3": {
+    "start": {
+      "anchor": "in_air:0",
+      "ok": true,
+      "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+      "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+    },
+    "end": {
+      "anchor": "in_air:7",
+      "ok": true,
+      "sha256": "c0f3fd7895c552f8fcaed78d43b29561e47baee0d36958a61b90aea0ab6fd308",
+      "hires_sha256": "87dca436caae7af9bcc88cb3a6f621b5fccbd2796ca0c950c5e9fbe7136de861"
+    }
+  },
+  "slash1": {
+    "start": {
+      "anchor": "idle:0",
+      "ok": true,
+      "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+      "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+    },
+    "end": {
+      "anchor": "idle:7",
+      "ok": true,
+      "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+      "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+    }
+  },
+  "slash2": {
+    "start": {
+      "anchor": "run:0",
+      "ok": true,
+      "sha256": "efd4229291b63238901987001d8d372189a15482127b3b0f58c97c4b594a6965",
+      "hires_sha256": "a88b851161f2aea034d7fe11c0994d042069a644c94665f56e0763c50717e2e0"
+    },
+    "end": {
+      "anchor": "run:7",
+      "ok": true,
+      "sha256": "b89168692c381337c8da6db354b30f7eba7dc8e19e0b5e38392df97d15960c0e",
+      "hires_sha256": "43e10934cbfbf116966e0f3866ed3ac37de4ad14d288906f9e4aaaa0147035bf"
+    }
+  },
+  "slash3": {
+    "start": {
+      "anchor": "in_air:0",
+      "ok": true,
+      "sha256": "54ea3b0b39ad4d0c5f192efd23e3d225aa289a313c0a224110882647f8cd2c50",
+      "hires_sha256": "661a67c94778435049c22aef0911df3341a696c2714243c5a4dab47e5349ed86"
+    },
+    "end": {
+      "anchor": "in_air:7",
+      "ok": true,
+      "sha256": "c0f3fd7895c552f8fcaed78d43b29561e47baee0d36958a61b90aea0ab6fd308",
+      "hires_sha256": "87dca436caae7af9bcc88cb3a6f621b5fccbd2796ca0c950c5e9fbe7136de861"
+    }
+  },
+  "block": {
+    "start": {
+      "anchor": "idle:0",
+      "ok": true,
+      "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+      "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+    },
+    "end": {
+      "anchor": "idle:7",
+      "ok": true,
+      "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+      "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+    }
+  },
+  "roll": {
+    "start": {
+      "anchor": "idle:0",
+      "ok": true,
+      "sha256": "27ae437094417ccb56d81342f33205b375271f6dfce9d9cb528fd5ba86647fd6",
+      "hires_sha256": "8d2f2c957d99cb74a7840ab0a20d63eaab4717fe3acce3f04b93797398e43f80"
+    },
+    "end": {
+      "anchor": "idle:7",
+      "ok": true,
+      "sha256": "9fb279408746fbfb100e69a411e8b86cb60db9a5702f3d8a7b991a1b5f846e9a",
+      "hires_sha256": "26e3a311251d40c4eb71a939354523673deff6c722c8c02c87dfb5ffffbc8433"
+    }
+  }
+}

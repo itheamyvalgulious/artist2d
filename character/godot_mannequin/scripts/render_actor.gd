@@ -93,6 +93,8 @@ var retarget_pairs: Dictionary = {}
 var weapon_rel := Basis.IDENTITY
 var requested_cam := Vector3(-70.0, 37.0, 20.0)
 var use_kaykit := false
+var current_action := "idle"
+var current_frames := 8
 
 
 func _initialize() -> void:
@@ -116,8 +118,10 @@ func _args() -> Dictionary:
 func _run() -> void:
 	var args := _args()
 	var action: String = args.get("action", "idle")
+	current_action = action
 	var outdir: String = args.get("out", "user://out")
 	var frames: int = int(args.get("frames", "8"))
+	current_frames = frames
 	var source: String = args.get("source", "kaykit")
 	var gear_mode: Dictionary = {"katana": "back", "pistol": "hip"}
 	if args.has("gear"):
@@ -154,7 +158,21 @@ func _run() -> void:
 		var rng: Array = ACTION_RANGES.get(action, [0.0, 1.0])
 		var start: float = float(args.get("start", str(rng[0])))
 		var end: float = float(args.get("end", str(rng[1])))
-		if args.has("base-clip"):
+		if action == "roll" and not args.has("base-clip"):
+			# KayKit has no somersault clip.  Build the roll from a held crouch
+			# (Dodge_Forward) plus a deterministic 360-degree pitch of the whole
+			# skeleton in _apply_roll(); frames 0/7 use the idle pose so the
+			# idle -> roll -> idle transition is honest on both ends.
+			var crouch: Array = await _precompute_poses("Dodge_Forward", frames, 0.32, 0.40)
+			var idle_pose: Array = await _precompute_poses("Idle", frames, 0.0, 0.0)
+			poses = []
+			for fi in frames:
+				if fi == 0 or fi == frames - 1:
+					poses.append(idle_pose[fi])
+				else:
+					poses.append(crouch[fi])
+			clip = "Dodge_Forward_crouch+360pitch"
+		elif args.has("base-clip"):
 			var base_clip: String = args.get("base-clip", "Running_A")
 			var upper_clip: String = args.get("upper-clip", clip)
 			var brng: Array = ACTION_RANGES.get("base", [0.0, 1.0])
@@ -197,6 +215,7 @@ func _run() -> void:
 	# ---------------- shaded pass (512 px per frame) -----------------------
 	vp.size = Vector2i(FRAME_HI, FRAME_HI)
 	await process_frame
+	rig.set_simple(true)
 	rig.set_pass("shaded")
 	for i in frames:
 		await _pose(i, frames, poses)
@@ -205,6 +224,35 @@ func _run() -> void:
 		sheet_hi.blit_rect(img, Rect2i(0, 0, FRAME_HI, FRAME_HI), Vector2i(i * FRAME_HI, 0))
 		if i == 0:
 			img.save_png(outdir.path_join("frame_preview.png"))
+
+	rig.set_simple(false)
+	# ---------------- clay pass (512 px per frame) ------------------------
+	# Same poses with one neutral material: the edit model reads the true
+	# silhouette instead of confusing near-black outfit boxes with weapons.
+	rig.set_pass("clay")
+	var sheet_clay := Image.create(FRAME_HI * frames, FRAME_HI, false, Image.FORMAT_RGBA8)
+	for i in frames:
+		await _pose(i, frames, poses)
+		var clay_img := await _capture()
+		clay_img.convert(Image.FORMAT_RGBA8)
+		sheet_clay.blit_rect(clay_img, Rect2i(0, 0, FRAME_HI, FRAME_HI), Vector2i(i * FRAME_HI, 0))
+
+	# ---------------- part-colour pass (512 px per frame) -----------------
+	# A flat, colour-coded pose proxy: each part is a distinct flat colour
+	# (legend supplied to the edit model).  Hair is hidden so the proxy shows
+	# the pose and the weapons only; the character's hair/appearance comes
+	# from the reference.
+	vp.size = Vector2i(FRAME_HI, FRAME_HI)
+	await process_frame
+	rig.set_simple(true)
+	rig.set_pass("part_id")
+	var sheet_parts := Image.create(FRAME_HI * frames, FRAME_HI, false, Image.FORMAT_RGBA8)
+	for i in frames:
+		await _pose(i, frames, poses)
+		var part_img := await _capture()
+		part_img.convert(Image.FORMAT_RGBA8)
+		sheet_parts.blit_rect(part_img, Rect2i(0, 0, FRAME_HI, FRAME_HI), Vector2i(i * FRAME_HI, 0))
+	rig.set_simple(false)
 
 	# ---------------- part-ID pass (64 px per frame) ----------------------
 	vp.size = Vector2i(FRAME_LO, FRAME_LO)
@@ -236,6 +284,8 @@ func _run() -> void:
 		frames_data.append({"frame": i, "bones": bones})
 
 	sheet_hi.save_png(outdir.path_join("sheet_shaded.png"))
+	sheet_parts.save_png(outdir.path_join("sheet_parts.png"))
+	sheet_clay.save_png(outdir.path_join("sheet_clay.png"))
 	sheet_part.save_png(outdir.path_join("sheet_part_id.png"))
 	sheet_bone.save_png(outdir.path_join("sheet_bone_id.png"))
 
@@ -300,6 +350,7 @@ func _write_trace(outdir: String, clip: String, poses: Array, frames: int) -> vo
 	var samples: Array = []
 	for i in frames:
 		_apply_pose(poses[i])
+		_apply_roll(i, frames)
 		await process_frame
 		var weapon: Node3D = rig.attachments["weapon"]
 		var hand_r: Node3D = rig.attachments["hand_r"]
@@ -333,9 +384,28 @@ func _pose(i: int, frames: int, poses: Array) -> void:
 	if use_kaykit and not poses.is_empty():
 		_apply_pose(poses[i])
 	else:
-		rig.seek_time(float(i) / float(frames))
+		var denom: float = float(max(1, frames - 1)) if current_action == "roll" else float(frames)
+		rig.seek_time(float(i) / denom)
+	_apply_roll(i, frames)
 	await process_frame
 	await RenderingServer.frame_post_draw
+
+
+func _apply_roll(i: int, frames: int) -> void:
+	# Rotate the whole skeleton around the body centre for the forward roll.
+	# The bone poses themselves stay a held crouch, so the 3D truth sheet
+	# shows a real somersault instead of eight near-identical crouches.
+	if current_action != "roll" or frames < 4:
+		rig.skeleton.transform = Transform3D.IDENTITY
+		return
+	var angle := 0.0
+	if i >= 1 and i <= frames - 2:
+		# Full 360: frame 1 is the tuck at 0deg and frame 6 is a distinct
+		# landing crouch at 360deg, so the roll completes and stands up.
+		angle = 360.0 * float(i - 1) / float(frames - 3)
+	var b := Basis(Vector3(1.0, 0.0, 0.0), deg_to_rad(angle))
+	var pivot := Vector3(0.0, rig.hips_rest_y * 0.86, 0.0)
+	rig.skeleton.transform = Transform3D(b, pivot - b * pivot)
 
 
 # ---------------------------------------------------------------------------

@@ -15,6 +15,10 @@ const PART_COLORS := {
 	"leg_l": Color(1.0, 0.0, 0.5019608, 1.0),
 	"leg_r": Color(0.5333333, 0.0, 1.0, 1.0),
 	"weapon": Color(0.0, 1.0, 1.0, 1.0),
+	"katana": Color(0.0, 1.0, 1.0, 1.0),
+	"scabbard": Color(0.65, 0.0, 1.0, 1.0),
+	"pistol": Color(1.0, 0.55, 0.0, 1.0),
+	"holster": Color(0.9, 0.9, 0.9, 1.0),
 	"shield": Color(1.0, 1.0, 1.0, 1.0),
 }
 
@@ -66,6 +70,7 @@ var mesh_keys: Array[String] = []  # parallel: bone key for each mesh
 var shaded_mats: Dictionary = {}
 var part_mats: Dictionary = {}
 var bone_mats: Dictionary = {}
+var clay_mat: StandardMaterial3D = null
 
 
 func _ready() -> void:
@@ -207,6 +212,19 @@ func _mat_shaded(key: String) -> StandardMaterial3D:
 		m.roughness = 0.9
 		shaded_mats[key] = m
 	return shaded_mats[key]
+
+
+func _mat_clay() -> StandardMaterial3D:
+	# Neutral clay pass: one light material for every body part, so the edit
+	# model can read a tumbling silhouette instead of a pile of near-black
+	# outfit boxes.  Colours always come from the reference panel.
+	if clay_mat == null:
+		clay_mat = StandardMaterial3D.new()
+		clay_mat.albedo_color = Color(0.80, 0.80, 0.82)
+		clay_mat.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
+		clay_mat.specular_mode = BaseMaterial3D.SPECULAR_TOON
+		clay_mat.roughness = 0.85
+	return clay_mat
 
 
 func _mat_part(part: String) -> StandardMaterial3D:
@@ -414,38 +432,71 @@ func _build_agent_weapons(limb: float, sw: float) -> void:
 	weapon.name = "weapon_holder"
 	attachments["weapon"] = weapon
 	_attachment("hand_r").add_child(weapon)
-	_add_box(weapon, Vector3(1.2, 19.0 * limb, 0.55), Vector3(0, 9.0 * limb, 0), "weapon", "weapon", Vector3.ZERO, "weapon")
-	_add_box(weapon, Vector3(4.8, 1.0, 1.2), Vector3(0, -0.4, 0), "weapon", "weapon", Vector3.ZERO, "weapon")
-	_add_box(weapon, Vector3(1.5, 4.2, 1.4), Vector3(0, -2.7, 0), "weapon", "weapon", Vector3.ZERO, "scabbard")
+	_add_box(weapon, Vector3(1.2, 19.0 * limb, 0.55), Vector3(0, 9.0 * limb, 0), "katana", "weapon", Vector3.ZERO, "weapon")
+	_add_box(weapon, Vector3(4.8, 1.0, 1.2), Vector3(0, -0.4, 0), "katana", "weapon", Vector3.ZERO, "weapon")
+	_add_box(weapon, Vector3(1.5, 4.2, 1.4), Vector3(0, -2.7, 0), "katana", "weapon", Vector3.ZERO, "scabbard")
 
 	# Sheathed katana: diagonal across the back, hilt above the right shoulder.
 	var kback := Node3D.new()
 	kback.name = "katana_back_holder"
 	_attachment("katana_back", "chest").add_child(kback)
-	kback.position = Vector3(-9.0, -1.0, 0.0)
+	kback.position = Vector3(-4.0, -1.0, 0.0)
 	kback.rotation_degrees = Vector3(0, 0, 35)
-	_add_box(kback, Vector3(2.4, 23.0, 1.6), Vector3(0, -0.5, 0), "weapon", "katana_back", Vector3.ZERO, "scabbard")
-	_add_box(kback, Vector3(0.5, 21.0, 0.5), Vector3(-1.0, -0.8, 0.7), "weapon", "katana_back", Vector3.ZERO, "weapon")
-	_add_box(kback, Vector3(1.5, 4.8, 1.4), Vector3(0, 14.5, 0), "weapon", "katana_back", Vector3.ZERO, "weapon")
-	_add_box(kback, Vector3(4.6, 1.0, 1.5), Vector3(0, 12.1, 0), "weapon", "katana_back", Vector3.ZERO, "weapon")
+	# The scabbard stays on the back even when the katana is drawn.  The hilt
+	# and blade are a separate child so set_gear() can hide them, leaving an
+	# empty straight scabbard (no duplicate hilt sticking over the shoulder).
+	_add_box(kback, Vector3(1.2, 23.0, 1.2), Vector3(0, -0.5, 0), "scabbard", "katana_back", Vector3.ZERO, "scabbard")
+	var hilt := Node3D.new()
+	hilt.name = "hilt"
+	kback.add_child(hilt)
+	# The blade must sit fully INSIDE the scabbard shell: an offset blade pokes
+	# through the side and the edit model then paints a second silver rod next
+	# to the scabbard (the "duplicate stowed katana" defect).  Only the hilt
+	# box and the tsuba should be visible above the scabbard.
+	_add_box(hilt, Vector3(0.5, 21.0, 0.5), Vector3(0, -0.8, 0), "katana", "katana_back", Vector3.ZERO, "weapon")
+	_add_box(hilt, Vector3(1.0, 4.8, 1.0), Vector3(0, 14.5, 0), "katana", "katana_back", Vector3.ZERO, "weapon")
+	_add_box(hilt, Vector3(3.6, 1.0, 1.2), Vector3(0, 12.1, 0), "katana", "katana_back", Vector3.ZERO, "weapon")
+	# Empty mouth of the scabbard, shown only while the katana is drawn: a
+	# plain closed box reads as a sheathed sword and the edit model adds a
+	# second hilt to it.  A dark opening reads as an empty sheath.
+	var mouth := Node3D.new()
+	mouth.name = "scabbard_mouth"
+	kback.add_child(mouth)
+	_add_box(mouth, Vector3(0.9, 1.1, 0.9), Vector3(0, 11.2, 0), "scabbard", "katana_back", Vector3.ZERO, "boot")
+	mouth.visible = false
 
 	# Active pistol: barrel follows the hand's -X (arm) axis.
 	var pistol := Node3D.new()
 	pistol.name = "pistol_holder"
 	_attachment("pistol", "hand_r").add_child(pistol)
-	_add_box(pistol, Vector3(6.0, 2.2, 1.8), Vector3(-3.0, 0.2, 0), "weapon", "pistol", Vector3.ZERO, "weapon")
-	_add_box(pistol, Vector3(1.8, 4.2, 2.0), Vector3(0.4, -2.2, 0), "weapon", "pistol", Vector3.ZERO, "scabbard")
-	_add_box(pistol, Vector3(1.2, 1.0, 1.0), Vector3(-5.8, 0.7, 0), "weapon", "pistol", Vector3.ZERO, "weapon")
+	_add_box(pistol, Vector3(6.0, 2.2, 1.8), Vector3(-3.0, 0.2, 0), "pistol", "pistol", Vector3.ZERO, "weapon")
+	_add_box(pistol, Vector3(1.8, 4.2, 2.0), Vector3(0.4, -2.2, 0), "pistol", "pistol", Vector3.ZERO, "scabbard")
+	_add_box(pistol, Vector3(1.2, 1.0, 1.0), Vector3(-5.8, 0.7, 0), "pistol", "pistol", Vector3.ZERO, "weapon")
 
-	# Holstered pistol on the right hip (near camera).
+	# Empty holster on the right hip (near camera).  The holster itself is
+	# always visible: when the pistol is drawn the hip must keep the same
+	# silhouette instead of losing the whole gear block from frame to frame.
+	var holster := Node3D.new()
+	holster.name = "holster_holder"
+	_attachment("holster", "hips").add_child(holster)
+	holster.position = Vector3(-7.2, -4.6, 2.2)
+	holster.rotation_degrees = Vector3(0, 0, -12)
+	_add_box(holster, Vector3(4.4, 10.0, 2.8), Vector3(-0.6, -3.4, 0.4), "holster", "holster", Vector3.ZERO, "scabbard")
+	# A light metal clip on the outer face keeps the empty holster readable
+	# against the dark shorts when the pistol is in hand.
+	_add_box(holster, Vector3(1.4, 1.6, 1.0), Vector3(0, 0.9, 1.5), "holster", "holster", Vector3.ZERO, "weapon")
+
+	# The pistol that sits in that holster; hidden while the pistol is in hand.
 	var phip := Node3D.new()
 	phip.name = "pistol_hip_holder"
 	_attachment("pistol_hip", "hips").add_child(phip)
 	phip.position = Vector3(-7.2, -4.6, 2.2)
 	phip.rotation_degrees = Vector3(0, 0, -12)
-	_add_box(phip, Vector3(3.0, 6.8, 2.4), Vector3(0, -2.2, 0), "weapon", "pistol_hip", Vector3.ZERO, "scabbard")
-	_add_box(phip, Vector3(1.8, 3.4, 1.9), Vector3(0, 1.9, 0), "weapon", "pistol_hip", Vector3.ZERO, "scabbard")
-	_add_box(phip, Vector3(1.6, 1.0, 1.4), Vector3(0, 3.8, 0), "weapon", "pistol_hip", Vector3.ZERO, "weapon")
+	_add_box(phip, Vector3(1.8, 3.4, 1.9), Vector3(0, 1.9, 0), "pistol", "pistol_hip", Vector3.ZERO, "scabbard")
+	# Slide/barrel sticking forward out of the holster: without it the stowed
+	# pistol reads as a featureless pouch.
+	_add_box(phip, Vector3(2.8, 1.1, 2.0), Vector3(0, 3.2, 1.1), "pistol", "pistol_hip", Vector3.ZERO, "weapon")
+	_add_box(phip, Vector3(1.6, 1.0, 1.4), Vector3(0, 3.9, 0), "pistol", "pistol_hip", Vector3.ZERO, "weapon")
 
 	# Keep the shield key present (empty) so shared truth/audit code can ask
 	# for it without branching on the character.
@@ -470,12 +521,33 @@ func set_gear(mode: Dictionary) -> void:
 	var pistol_mode := String(mode.get("pistol", "hip"))
 	if katana == "hand" and attachments.has("weapon"):
 		attachments["weapon"].visible = true
+		if attachments.has("katana_back"):
+			attachments["katana_back"].visible = true
+			var h = attachments["katana_back"].get_node_or_null("hilt")
+			if h:
+				h.visible = false
+			var mouth_open = attachments["katana_back"].get_node_or_null("scabbard_mouth")
+			if mouth_open:
+				mouth_open.visible = true
 	elif katana == "back" and attachments.has("katana_back"):
 		attachments["katana_back"].visible = true
+		var h2 = attachments["katana_back"].get_node_or_null("hilt")
+		if h2:
+			h2.visible = true
+		var mouth_shut = attachments["katana_back"].get_node_or_null("scabbard_mouth")
+		if mouth_shut:
+			mouth_shut.visible = false
 	if pistol_mode == "hand" and attachments.has("pistol"):
 		attachments["pistol"].visible = true
 	elif pistol_mode == "hip" and attachments.has("pistol_hip"):
 		attachments["pistol_hip"].visible = true
+
+
+func set_simple(on: bool) -> void:
+	for mi in meshes:
+		var shade: String = mi.get_meta("shade_key", "")
+		if shade == "hair":
+			mi.visible = not on
 
 
 func set_pass(pass_name: String) -> void:
@@ -485,6 +557,8 @@ func set_pass(pass_name: String) -> void:
 		if pass_name == "shaded":
 			var shade_key: String = mi.get_meta("shade_key", part)
 			mi.material_override = _mat_shaded(shade_key)
+		elif pass_name == "clay":
+			mi.material_override = _mat_clay()
 		elif pass_name == "part_id":
 			mi.material_override = _mat_part(part)
 		else:
@@ -507,6 +581,7 @@ func _build_animations() -> void:
 	lib.add_animation("sword_block", _anim_sword_block())
 	lib.add_animation("run", _anim_run())
 	lib.add_animation("attack_combo", _anim_attack())
+	lib.add_animation("roll_tuck", _anim_roll_tuck())
 	anim_player.add_animation_library("actions", lib)
 	anim_player.play("actions/idle")
 	anim_player.pause()
@@ -628,6 +703,40 @@ func _anim_attack() -> Animation:
 	return a
 
 
+func _anim_roll_tuck() -> Animation:
+	# A real forward-roll silhouette: frames 0 and 7 are the standing
+	# transition, frames 1-6 hold a tight tuck (chin down, knees to chest,
+	# elbows folded).  render_actor.gd adds the 360-degree skeleton pitch.
+	var a := _new_anim()
+	var stand := [0, 0, 0, 0, 0, 0, 0, 0]
+	var chest := [0, 58, 64, 64, 62, 60, 30, 0]
+	var spine := [0, 24, 28, 28, 26, 24, 12, 0]
+	var head := [0, 40, 44, 44, 42, 40, 16, 0]
+	var hip_tilt := [0, 10, 12, 12, 11, 10, 5, 0]
+	var upper_arm := [0, -74, -86, -86, -84, -80, -38, 0]
+	var elbow := [0, -108, -124, -124, -120, -114, -64, 0]
+	var thigh := [0, -112, -124, -124, -120, -114, -60, 0]
+	var knee := [0, 128, 142, 142, 138, 132, 88, 0]
+	_rot_track(a, "hips", hip_tilt.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "spine", spine.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "chest", chest.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "head", head.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "upper_arm_l", upper_arm.map(func(v): return Vector3(v, 0, 10)))
+	_rot_track(a, "upper_arm_r", upper_arm.map(func(v): return Vector3(v, 0, -10)))
+	_rot_track(a, "lower_arm_l", elbow.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "lower_arm_r", elbow.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "upper_leg_l", thigh.map(func(v): return Vector3(v, 0, 1.5)))
+	_rot_track(a, "upper_leg_r", thigh.map(func(v): return Vector3(v, 0, -1.5)))
+	_rot_track(a, "lower_leg_l", knee.map(func(v): return Vector3(v, 0, 0)))
+	_rot_track(a, "lower_leg_r", knee.map(func(v): return Vector3(v, 0, 0)))
+	_pos_track(a, "hips", [
+		Vector3(0, 0, 0), Vector3(0, -7.0, 2.0), Vector3(0, -8.0, 2.5),
+		Vector3(0, -8.0, 2.5), Vector3(0, -8.0, 2.5), Vector3(0, -7.5, 2.0),
+		Vector3(0, -4.5, 0.6), Vector3(0, 0, 0),
+	])
+	return a
+
+
 func stop_animation() -> void:
 	anim_player.stop()
 
@@ -635,7 +744,8 @@ func stop_animation() -> void:
 func play_action(action: String) -> void:
 	if action == "rest":
 		return
-	anim_player.play("actions/" + action)
+	var clip := "roll_tuck" if action == "roll" else action
+	anim_player.play("actions/" + clip)
 	anim_player.pause()
 
 

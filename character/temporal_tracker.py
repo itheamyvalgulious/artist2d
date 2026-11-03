@@ -533,6 +533,11 @@ def stabilize_action(mannequin_dir: Path, frame_paths: list[Path],
             p = (At @ (_safe_inv(A0) @ c))[:2]
             max_disp = max(max_disp, float(np.linalg.norm(p - c[:2])))
     static_clip = max_disp < 6.0
+    # A somersault rotates the whole skeleton around its centre; the per-bone
+    # affine displacement can look small even though every pixel moves.  Never
+    # stamp frame-0 facial/rivet features onto a rolling body.
+    if action == "roll":
+        static_clip = False
     frozen = [np.zeros((64, 64), dtype=bool) for _ in range(n)]
     for t in range(1, n):
         motion = _motion(truth, t)
