@@ -12,8 +12,8 @@ __pycache__/
 # ---- large local artifacts (kept on disk, not in git) ----
 # Intermediate AI responses, masks, 3D truth channels; see README §5.
 work/
-# Raw OpenCode session exports (~1.1 GB); only README/index/export.json/exporter are tracked.
-archive_trajectory/*_ses_*/
+# OpenCode 原始轨迹导出（约 2.5 GB）：整目录都不进 git（含 README / index / export.json / 导出脚本）。
+archive_trajectory/
 
 # ---- OS / editor ----
 .DS_Store
